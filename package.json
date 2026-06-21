@@ -1,0 +1,32 @@
+{
+  "name": "educonnect-ai",
+  "version": "1.0.0",
+  "description": "EduConnect AI — SDG 4 Quality Education Platform. Full-stack MERN application with AI-powered study assistant.",
+  "scripts": {
+    "start": "cd backend && node server.js",
+    "server": "cd backend && nodemon server.js",
+    "client": "cd frontend && npm run dev",
+    "dev": "npm run server & npm run client",
+    "build": "cd frontend && npm run build",
+    "seed": "cd backend && node seed/seedData.js",
+    "install:all": "cd backend && npm install && cd ../frontend && npm install"
+  },
+  "keywords": [
+    "edutech",
+    "sdg4",
+    "quality-education",
+    "mern",
+    "react",
+    "nodejs",
+    "mongodb",
+    "ai-assistant",
+    "tailwindcss",
+    "framer-motion"
+  ],
+  "author": "Praval (https://github.com/Praval07)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Praval07/EduConnect---SDG-4-Quality-Education.git"
+  }
+}
