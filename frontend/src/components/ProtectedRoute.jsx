@@ -2,8 +2,13 @@ import { Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { motion } from 'framer-motion';
 
-const ProtectedRoute = ({ children }) => {
-  const { user, loading } = useAuth();
+/**
+ * ProtectedRoute
+ * - allowGuest={true}  → accessible to guests AND logged-in users
+ * - allowGuest={false} → requires logged-in user (default)
+ */
+const ProtectedRoute = ({ children, allowGuest = false }) => {
+  const { user, loading, isGuest } = useAuth();
 
   if (loading) {
     return (
@@ -13,8 +18,8 @@ const ProtectedRoute = ({ children }) => {
           animate={{ opacity: 1, scale: 1 }}
           className="flex flex-col items-center gap-4"
         >
-          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 to-emerald-500 flex items-center justify-center">
-            <span className="text-white text-2xl font-bold">E</span>
+          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 to-yellow-400 flex items-center justify-center shadow-xl">
+            <span className="text-white text-xl font-bold font-poppins">RR</span>
           </div>
           <div className="flex gap-2">
             {[0, 1, 2].map(i => (
@@ -26,13 +31,17 @@ const ProtectedRoute = ({ children }) => {
               />
             ))}
           </div>
-          <p className="text-gray-500 dark:text-gray-400 text-sm font-inter">Loading EduConnect AI...</p>
+          <p className="text-gray-500 dark:text-gray-400 text-sm">Loading Rapid Revision Hub...</p>
         </motion.div>
       </div>
     );
   }
 
-  if (!user) {
+  // Allow guests on allowGuest routes (Study Materials, Videos, AI Assistant)
+  if (allowGuest && (user || isGuest)) return children;
+
+  // Strictly protected routes require real login
+  if (!allowGuest && !user) {
     return <Navigate to="/login" replace />;
   }
 

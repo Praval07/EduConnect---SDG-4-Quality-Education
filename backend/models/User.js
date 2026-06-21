@@ -4,9 +4,9 @@ const bcrypt = require('bcryptjs');
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, 'Name is required'],
+    required: [true, 'Full name is required'],
     trim: true,
-    maxlength: [50, 'Name cannot exceed 50 characters'],
+    maxlength: [80, 'Name cannot exceed 80 characters'],
   },
   email: {
     type: String,
@@ -15,30 +15,33 @@ const userSchema = new mongoose.Schema({
     lowercase: true,
     match: [/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/, 'Please enter a valid email'],
   },
+  mobile: {
+    type: String,
+    default: '',
+    match: [/^[6-9]\d{9}$/, 'Please enter a valid 10-digit mobile number'],
+  },
   password: {
     type: String,
     required: [true, 'Password is required'],
     minlength: [6, 'Password must be at least 6 characters'],
     select: false,
   },
-  avatar: {
-    type: String,
-    default: '',
-  },
-  college: { type: String, default: '' },
-  branch: { type: String, default: '' },
+  avatar: { type: String, default: '' },
+  college:  { type: String, default: '' },
+  course:   { type: String, default: '' },   // e.g. B.Tech, MCA, BCA
+  branch:   { type: String, default: '' },   // e.g. CSE, IT
   semester: { type: String, default: '' },
   skills: [{ type: String }],
   stats: {
     resourcesDownloaded: { type: Number, default: 0 },
-    videosWatched: { type: Number, default: 0 },
-    aiQueries: { type: Number, default: 0 },
-    savedResources: { type: Number, default: 0 },
-    aiSessions: { type: Number, default: 0 },
+    videosWatched:       { type: Number, default: 0 },
+    aiQueries:           { type: Number, default: 0 },
+    savedResources:      { type: Number, default: 0 },
+    aiSessions:          { type: Number, default: 0 },
   },
-  studyGoals: [{ type: String }],
-  savedResourceIds: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Resource' }],
-  watchLater: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Video' }],
+  studyGoals:      [{ type: String }],
+  savedResourceIds:[{ type: mongoose.Schema.Types.ObjectId, ref: 'Resource' }],
+  watchLater:      [{ type: mongoose.Schema.Types.ObjectId, ref: 'Video' }],
   role: { type: String, enum: ['student', 'admin'], default: 'student' },
   createdAt: { type: Date, default: Date.now },
 });
@@ -51,7 +54,7 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
-// Compare password method
+// Compare password
 userSchema.methods.comparePassword = async function (candidatePassword) {
   return await bcrypt.compare(candidatePassword, this.password);
 };

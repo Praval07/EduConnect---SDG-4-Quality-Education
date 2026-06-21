@@ -3,12 +3,25 @@ import axios from 'axios';
 
 const AuthContext = createContext(null);
 
+const TOKEN_KEY = 'rrh_token'; // Rapid Revision Hub
+
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem('educonnect_token'));
+  const [token, setToken] = useState(
+    localStorage.getItem(TOKEN_KEY) || localStorage.getItem('educonnect_token') // migrate old key
+  );
   const [loading, setLoading] = useState(true);
+  const [isGuest, setIsGuest] = useState(false);
 
-  // Set axios default header
+  // Migrate old token key
+  useEffect(() => {
+    const oldToken = localStorage.getItem('educonnect_token');
+    if (oldToken && !localStorage.getItem(TOKEN_KEY)) {
+      localStorage.setItem(TOKEN_KEY, oldToken);
+      localStorage.removeItem('educonnect_token');
+    }
+  }, []);
+
   useEffect(() => {
     if (token) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
@@ -33,9 +46,10 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     const res = await axios.post('/api/auth/login', { email, password });
     const { token: newToken, user: newUser } = res.data;
-    localStorage.setItem('educonnect_token', newToken);
+    localStorage.setItem(TOKEN_KEY, newToken);
     setToken(newToken);
     setUser(newUser);
+    setIsGuest(false);
     axios.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
     return res.data;
   };
@@ -43,26 +57,32 @@ export const AuthProvider = ({ children }) => {
   const register = async (data) => {
     const res = await axios.post('/api/auth/register', data);
     const { token: newToken, user: newUser } = res.data;
-    localStorage.setItem('educonnect_token', newToken);
+    localStorage.setItem(TOKEN_KEY, newToken);
     setToken(newToken);
     setUser(newUser);
+    setIsGuest(false);
     axios.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
     return res.data;
   };
 
+  const loginAsGuest = () => {
+    setIsGuest(true);
+    setLoading(false);
+  };
+
   const logout = () => {
+    localStorage.removeItem(TOKEN_KEY);
     localStorage.removeItem('educonnect_token');
     setToken(null);
     setUser(null);
+    setIsGuest(false);
     delete axios.defaults.headers.common['Authorization'];
   };
 
-  const updateUser = (updatedUser) => {
-    setUser(updatedUser);
-  };
+  const updateUser = (updatedUser) => setUser(updatedUser);
 
   return (
-    <AuthContext.Provider value={{ user, token, loading, login, register, logout, updateUser }}>
+    <AuthContext.Provider value={{ user, token, loading, isGuest, login, register, loginAsGuest, logout, updateUser }}>
       {children}
     </AuthContext.Provider>
   );

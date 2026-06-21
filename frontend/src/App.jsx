@@ -4,6 +4,8 @@ import { ThemeProvider } from './context/ThemeContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
+
+// Pages
 import Landing from './pages/Landing';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -14,6 +16,7 @@ import AIAssistant from './pages/AIAssistant';
 import Profile from './pages/Profile';
 import Contact from './pages/Contact';
 import About from './pages/About';
+import AboutSDG from './pages/AboutSDG';
 import NotFound from './pages/NotFound';
 
 function App() {
@@ -25,26 +28,37 @@ function App() {
             <Navbar />
             <main>
               <Routes>
+                {/* Public routes */}
                 <Route path="/" element={<Landing />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/about" element={<About />} />
-                <Route path="/dashboard" element={
-                  <ProtectedRoute><Dashboard /></ProtectedRoute>
+                <Route path="/about-sdg" element={<AboutSDG />} />
+
+                {/* Guest-accessible routes (no login required, but login enhances them) */}
+                <Route path="/study-materials" element={
+                  <ProtectedRoute allowGuest={true}><StudyMaterials /></ProtectedRoute>
                 } />
                 <Route path="/materials" element={
-                  <ProtectedRoute><StudyMaterials /></ProtectedRoute>
+                  <ProtectedRoute allowGuest={true}><StudyMaterials /></ProtectedRoute>
                 } />
                 <Route path="/videos" element={
-                  <ProtectedRoute><Videos /></ProtectedRoute>
+                  <ProtectedRoute allowGuest={true}><Videos /></ProtectedRoute>
                 } />
                 <Route path="/ai-assistant" element={
-                  <ProtectedRoute><AIAssistant /></ProtectedRoute>
+                  <ProtectedRoute allowGuest={true}><AIAssistant /></ProtectedRoute>
+                } />
+
+                {/* Strictly protected routes */}
+                <Route path="/dashboard" element={
+                  <ProtectedRoute><Dashboard /></ProtectedRoute>
                 } />
                 <Route path="/profile" element={
                   <ProtectedRoute><Profile /></ProtectedRoute>
                 } />
+
+                {/* 404 */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </main>
