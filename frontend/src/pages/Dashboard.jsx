@@ -6,7 +6,7 @@ import axios from 'axios';
 import {
   FiBook, FiVideo, FiMessageSquare, FiBookmark,
   FiTrendingUp, FiArrowRight, FiClock, FiActivity,
-  FiAward, FiTarget
+  FiAward, FiTarget, FiZap
 } from 'react-icons/fi';
 
 const StatCard = ({ icon: Icon, label, value, color, bgColor, delay = 0 }) => (
@@ -262,8 +262,5 @@ const Dashboard = () => {
     </div>
   );
 };
-
-// Need FiZap import
-import { FiZap } from 'react-icons/fi';
 
 export default Dashboard;
