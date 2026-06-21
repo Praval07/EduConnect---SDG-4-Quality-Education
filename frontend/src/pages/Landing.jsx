@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   FiArrowRight, FiBook, FiVideo, FiMessageSquare, FiUsers,
-  FiStar, FiCheckCircle, FiZap, FiShield, FiGlobe, FiTrendingUp
+  FiCheckCircle, FiZap, FiShield, FiGlobe, FiTrendingUp
 } from 'react-icons/fi';
 import AnimatedCounter from '../components/AnimatedCounter';
 
@@ -14,10 +14,10 @@ const fadeIn = (delay = 0) => ({
 });
 
 const stats = [
-  { value: 50000, label: 'Students Served', suffix: '+', icon: FiUsers, color: 'text-blue-600' },
-  { value: 1200, label: 'Resources Available', suffix: '+', icon: FiBook, color: 'text-emerald-600' },
-  { value: 500, label: 'Educational Videos', suffix: '+', icon: FiVideo, color: 'text-amber-600' },
-  { value: 20, label: 'Subjects Covered', suffix: '+', icon: FiTrendingUp, color: 'text-purple-600' },
+  { value: 12, label: 'Study Resources', suffix: '', icon: FiBook, color: 'text-blue-600', note: 'Curated & growing' },
+  { value: 10, label: 'Educational Videos', suffix: '', icon: FiVideo, color: 'text-emerald-600', note: 'Hand-picked tutorials' },
+  { value: 20, label: 'Subjects Covered', suffix: '+', icon: FiTrendingUp, color: 'text-amber-600', note: 'CS & beyond' },
+  { value: 0, label: 'Students Registered', suffix: '', icon: FiUsers, color: 'text-purple-600', note: 'Be the first!' },
 ];
 
 const features = [
@@ -65,39 +65,22 @@ const features = [
   },
 ];
 
-const testimonials = [
+const values = [
   {
-    name: 'Priya Sharma',
-    role: 'B.Tech CSE, IIT Delhi',
-    text: 'EduConnect AI completely transformed how I prepare for exams. The AI assistant is incredible — it explains complex DBMS concepts in minutes!',
-    rating: 5,
-    avatar: 'P',
-    color: 'from-blue-500 to-indigo-600',
+    title: 'Accessibility',
+    description: 'Breaking down barriers to high-quality educational resources for every student regardless of background.',
+    icon: FiGlobe
   },
   {
-    name: 'Rahul Kumar',
-    role: 'MCA Student, DU',
-    text: 'The study materials quality is top-notch. Downloaded DSA notes and React guides — all perfectly organized and beginner-friendly.',
-    rating: 5,
-    avatar: 'R',
-    color: 'from-emerald-500 to-teal-600',
+    title: 'Integrity',
+    description: 'Providing verified, accurate, and ethical academic content through a transparent learning environment.',
+    icon: FiShield
   },
   {
-    name: 'Ananya Singh',
-    role: 'Software Engineer, TCS',
-    text: 'Used EduConnect AI during my placement prep. The AI study assistant helped me create a personalized 30-day roadmap. Got placed at TCS!',
-    rating: 5,
-    avatar: 'A',
-    color: 'from-purple-500 to-pink-600',
-  },
-  {
-    name: 'Dev Patel',
-    role: 'Full Stack Developer',
-    text: 'The video library is amazing. Curated tutorials from the best teachers on YouTube, all in one place. Saved me so much time!',
-    rating: 5,
-    avatar: 'D',
-    color: 'from-amber-500 to-orange-600',
-  },
+    title: 'Innovation',
+    description: 'Leveraging AI-driven technology to personalize the learning experience and streamline academic growth.',
+    icon: FiZap
+  }
 ];
 
 const faqs = [
@@ -315,6 +298,12 @@ const Landing = () => {
       {/* Stats Section */}
       <section className="py-16 bg-white dark:bg-gray-900/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div {...fadeIn()} className="text-center mb-10">
+            <span className="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-semibold rounded-full uppercase tracking-wider">
+              By the Numbers
+            </span>
+            <p className="text-gray-500 dark:text-gray-400 text-sm mt-2">Real numbers. No fake claims.</p>
+          </motion.div>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, i) => {
               const Icon = stat.icon;
@@ -333,7 +322,8 @@ const Landing = () => {
                   <div className="text-4xl font-bold font-poppins text-gray-900 dark:text-white mb-1">
                     <AnimatedCounter target={stat.value} suffix={stat.suffix} />
                   </div>
-                  <div className="text-gray-500 dark:text-gray-400 text-sm">{stat.label}</div>
+                  <div className="text-gray-600 dark:text-gray-300 text-sm font-medium">{stat.label}</div>
+                  {stat.note && <div className="text-gray-400 text-xs mt-0.5">{stat.note}</div>}
                 </motion.div>
               );
             })}
@@ -386,45 +376,79 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* Testimonials */}
+      {/* Join the Mission — replaces fake testimonials */}
       <section className="py-20 bg-white dark:bg-gray-900/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div {...fadeIn()} className="text-center mb-16">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div {...fadeIn()} className="text-center mb-14">
             <h2 className="text-3xl sm:text-4xl font-bold font-poppins text-gray-900 dark:text-white mb-4">
-              Loved by <span className="gradient-text">Students Worldwide</span>
+              Why <span className="gradient-text">EduConnect AI?</span>
             </h2>
-            <p className="text-gray-600 dark:text-gray-400">Real stories from real students who transformed their learning journey</p>
+            <p className="text-gray-600 dark:text-gray-400 max-w-xl mx-auto text-sm">
+              Built to make quality education accessible to every student — free, honest, and powered by AI.
+            </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {testimonials.map((t, i) => (
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            {[
+              {
+                emoji: '🤖',
+                title: 'AI Study Assistant',
+                desc: 'Ask anything about your syllabus. Get structured, markdown-formatted answers on DBMS, DSA, React, Python, OS, and more — instantly.',
+                color: 'from-purple-500 to-blue-600',
+              },
+              {
+                emoji: '📚',
+                title: 'Curated Resources',
+                desc: '12 hand-picked study resources covering DSA, Web Development, DBMS, OS, and Computer Networks. Quality over quantity.',
+                color: 'from-blue-500 to-cyan-500',
+              },
+              {
+                emoji: '🎥',
+                title: 'YouTube Video Library',
+                desc: '10 hand-picked educational videos from top instructors like Neso Academy, Abdul Bari, Dave Gray, and Traversy Media.',
+                color: 'from-emerald-500 to-teal-600',
+              },
+            ].map((item, i) => (
               <motion.div
-                key={t.name}
+                key={item.title}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                whileHover={{ y: -6 }}
-                className="bg-white dark:bg-gray-800 rounded-3xl p-5 shadow-lg border border-gray-100 dark:border-gray-700"
+                transition={{ delay: i * 0.1 }}
+                whileHover={{ y: -5 }}
+                className="bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-lg border border-gray-100 dark:border-gray-700"
               >
-                <div className="flex gap-0.5 mb-4">
-                  {Array(t.rating).fill(0).map((_, i) => (
-                    <FiStar key={i} size={14} className="text-amber-400 fill-amber-400" />
-                  ))}
+                <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${item.color} flex items-center justify-center text-2xl mb-4 shadow-lg`}>
+                  {item.emoji}
                 </div>
-                <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed mb-4 italic">"{t.text}"</p>
-                <div className="flex items-center gap-3">
-                  <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${t.color} flex items-center justify-center text-white font-bold text-sm`}>
-                    {t.avatar}
-                  </div>
-                  <div>
-                    <p className="font-semibold text-gray-900 dark:text-white text-sm">{t.name}</p>
-                    <p className="text-xs text-gray-500">{t.role}</p>
-                  </div>
-                </div>
+                <h3 className="font-bold font-poppins text-gray-900 dark:text-white mb-2">{item.title}</h3>
+                <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}
           </div>
+
+          {/* Honest "Be First" CTA */}
+          <motion.div
+            {...fadeIn(0.2)}
+            className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-3xl p-8 text-center border border-blue-100 dark:border-blue-800/50"
+          >
+            <div className="text-4xl mb-3">🚀</div>
+            <h3 className="text-xl font-bold font-poppins text-gray-900 dark:text-white mb-2">
+              Be Among the First Students
+            </h3>
+            <p className="text-gray-600 dark:text-gray-400 text-sm mb-5 max-w-md mx-auto">
+              EduConnect AI is just getting started. Register now, explore the platform, and help shape its future. Your feedback matters.
+            </p>
+            <Link to="/register" id="mission-cta-register">
+              <motion.span
+                whileHover={{ scale: 1.04, y: -2 }}
+                whileTap={{ scale: 0.97 }}
+                className="inline-flex items-center gap-2 px-7 py-3 bg-blue-600 text-white font-semibold rounded-2xl shadow-xl shadow-blue-500/30 hover:bg-blue-700 transition-all text-sm"
+              >
+                Join Free Now <FiArrowRight size={16} />
+              </motion.span>
+            </Link>
+          </motion.div>
         </div>
       </section>
 
@@ -464,7 +488,7 @@ const Landing = () => {
               Ready to Transform Your Learning?
             </h2>
             <p className="text-blue-200 text-lg mb-8">
-              Join 50,000+ students already using EduConnect AI to ace their studies.
+              Start learning today — free, honest, and AI-powered.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Link to="/register" id="cta-register">

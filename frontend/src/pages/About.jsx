@@ -64,10 +64,10 @@ const team = [
 ];
 
 const milestones = [
-  { year: '2024', title: 'Project Inception', desc: 'EduConnect AI was conceptualized as an SDG 4 capstone project.' },
-  { year: '2024', title: 'MVP Launch', desc: 'First version launched with study materials and video library.' },
-  { year: '2024', title: 'AI Integration', desc: 'ChatGPT-style AI Study Assistant added for personalized learning.' },
-  { year: '2025', title: 'Community Growth', desc: 'Reached 50,000+ students served across India.' },
+  { year: '2026', title: 'Project Inception', desc: 'EduConnect AI was conceptualized as an SDG 4 academic project to democratize learning.' },
+  { year: '2026', title: 'MVP Launch', desc: 'First version launched with 12 curated study resources and 10 educational videos.' },
+  { year: '2026', title: 'AI Integration', desc: 'ChatGPT-style AI Study Assistant added — answers questions on 20+ CS subjects.' },
+  { year: 'Now', title: 'Growing Platform', desc: 'Open to students everywhere. Register free and help shape the future of EduConnect AI.' },
 ];
 
 const sdgTargets = [
@@ -120,19 +120,20 @@ const About = () => {
         </div>
       </section>
 
-      {/* Stats Banner */}
+      {/* Stats Banner — honest numbers only */}
       <section className="bg-blue-600 py-10">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center text-white">
             {[
-              { value: '50K+', label: 'Students Served' },
-              { value: '1,200+', label: 'Study Resources' },
-              { value: '500+', label: 'Educational Videos' },
-              { value: '20+', label: 'Subjects Covered' },
+              { value: '12', label: 'Study Resources', note: 'Curated & growing' },
+              { value: '10', label: 'Educational Videos', note: 'Hand-picked tutorials' },
+              { value: '20+', label: 'Subjects Covered', note: 'CS & beyond' },
+              { value: '0', label: 'Students Registered', note: 'Be the first!' },
             ].map((stat, i) => (
               <motion.div key={stat.label} {...fadeIn(i * 0.1)}>
-                <div className="text-3xl font-bold font-poppins mb-1">{stat.value}</div>
-                <div className="text-blue-200 text-sm">{stat.label}</div>
+                <div className="text-3xl font-bold font-poppins mb-0.5">{stat.value}</div>
+                <div className="text-blue-100 text-sm font-medium">{stat.label}</div>
+                <div className="text-blue-300 text-xs mt-0.5">{stat.note}</div>
               </motion.div>
             ))}
           </div>
@@ -158,7 +159,7 @@ const About = () => {
                   We set out to build a platform that combines the best of Coursera, Khan Academy, and ChatGPT into a single, free, student-first platform aligned with the UN's Sustainable Development Goal 4 — Quality Education for All.
                 </p>
                 <p>
-                  Today, EduConnect AI serves students across India and beyond, offering curated study materials, handpicked educational videos, and an AI study assistant that never sleeps — all completely free.
+                  EduConnect AI is a new platform — built with real passion, real code, and a real commitment to SDG 4. It currently offers 12 curated study resources, 10 handpicked educational videos across 20+ CS subjects, and an AI study assistant available 24/7. Everything is free.
                 </p>
               </div>
               <div className="mt-6 flex flex-wrap gap-3">
@@ -318,8 +319,8 @@ const About = () => {
                 </p>
                 <div className="grid grid-cols-2 gap-3">
                   {[
-                    { icon: FiUsers, label: '50K+ Students' },
-                    { icon: FiBook, label: '1,200+ Resources' },
+                    { icon: FiBook, label: '12 Resources' },
+                    { icon: FiUsers, label: '0 Students (so far)' },
                     { icon: FiGlobe, label: 'Global Access' },
                     { icon: FiHeart, label: 'Always Free' },
                   ].map(item => {
@@ -349,7 +350,7 @@ const About = () => {
               Ready to Join Our Mission?
             </h2>
             <p className="text-blue-200 mb-7 text-sm">
-              Create a free account and start learning with 50,000+ students today.
+              Register free and be among the first students on EduConnect AI.
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
               <Link to="/register" id="about-cta-register">
