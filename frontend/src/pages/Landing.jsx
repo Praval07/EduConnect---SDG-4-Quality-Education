@@ -65,24 +65,6 @@ const features = [
   },
 ];
 
-const values = [
-  {
-    title: 'Accessibility',
-    description: 'Breaking down barriers to high-quality educational resources for every student regardless of background.',
-    icon: FiGlobe
-  },
-  {
-    title: 'Integrity',
-    description: 'Providing verified, accurate, and ethical academic content through a transparent learning environment.',
-    icon: FiShield
-  },
-  {
-    title: 'Innovation',
-    description: 'Leveraging AI-driven technology to personalize the learning experience and streamline academic growth.',
-    icon: FiZap
-  }
-];
-
 const faqs = [
   {
     q: 'Is Rapid Revision Hub free to use?',

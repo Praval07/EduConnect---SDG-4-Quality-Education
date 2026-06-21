@@ -5,7 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import {
   FiHome, FiGrid, FiBook, FiVideo, FiMessageSquare,
-  FiUser, FiMail, FiLogOut, FiMenu, FiX, FiSun, FiMoon,
+  FiMail, FiLogOut, FiMenu, FiX, FiSun, FiMoon,
   FiInfo, FiPhone
 } from 'react-icons/fi';
 
@@ -33,9 +33,7 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => { setMobileOpen(false); }, [location]);
-
-  const handleLogout = () => { logout(); navigate('/'); };
+  const handleLogout = () => { logout(); navigate('/'); setMobileOpen(false); };
 
   const visibleLinks = navLinks.filter(link => !link.protected || user);
   const displayName = user?.name?.split(' ')[0] || (isGuest ? 'Guest' : null);
@@ -212,6 +210,7 @@ const Navbar = () => {
                   return (
                     <motion.div key={link.to} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.05 }}>
                       <Link to={link.to}
+                        onClick={() => setMobileOpen(false)}
                         className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
                           isActive
                             ? 'bg-blue-600 text-white shadow-md shadow-blue-500/30'
@@ -244,10 +243,10 @@ const Navbar = () => {
                   </button>
                 ) : (
                   <div className="space-y-2">
-                    <Link to="/login" className="block text-center py-3 rounded-xl text-sm font-medium text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all">
+                    <Link to="/login" onClick={() => setMobileOpen(false)} className="block text-center py-3 rounded-xl text-sm font-medium text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all">
                       Login
                     </Link>
-                    <Link to="/register" className="block text-center py-3 rounded-xl text-sm font-medium bg-blue-600 text-white hover:bg-blue-700 transition-all shadow-md shadow-blue-500/30">
+                    <Link to="/register" onClick={() => setMobileOpen(false)} className="block text-center py-3 rounded-xl text-sm font-medium bg-blue-600 text-white hover:bg-blue-700 transition-all shadow-md shadow-blue-500/30">
                       Create Free Account
                     </Link>
                   </div>

@@ -42,7 +42,8 @@ const Register = () => {
     if (validationError) { setError(validationError); return; }
     setLoading(true);
     try {
-      const { confirmPassword, ...data } = form;
+      const data = { ...form };
+      delete data.confirmPassword;
       await register(data);
       navigate('/dashboard');
     } catch (err) {

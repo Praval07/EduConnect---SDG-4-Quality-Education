@@ -1,4 +1,5 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+/* eslint-disable react-refresh/only-export-components */
+import { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 
 const AuthContext = createContext(null);
@@ -22,17 +23,16 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  useEffect(() => {
-    if (token) {
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-      fetchCurrentUser();
-    } else {
-      delete axios.defaults.headers.common['Authorization'];
-      setLoading(false);
-    }
-  }, [token]);
+  const logout = useCallback(() => {
+    localStorage.removeItem(TOKEN_KEY);
+    localStorage.removeItem('educonnect_token');
+    setToken(null);
+    setUser(null);
+    setIsGuest(false);
+    delete axios.defaults.headers.common['Authorization'];
+  }, []);
 
-  const fetchCurrentUser = async () => {
+  const fetchCurrentUser = useCallback(async () => {
     try {
       const res = await axios.get('/api/auth/me');
       setUser(res.data.user);
@@ -41,7 +41,18 @@ export const AuthProvider = ({ children }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [logout]);
+
+  useEffect(() => {
+    if (token) {
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      fetchCurrentUser();
+    } else {
+      delete axios.defaults.headers.common['Authorization'];
+      setLoading(false);
+    }
+  }, [token, fetchCurrentUser]);
 
   const login = async (email, password) => {
     const res = await axios.post('/api/auth/login', { email, password });
@@ -68,15 +79,6 @@ export const AuthProvider = ({ children }) => {
   const loginAsGuest = () => {
     setIsGuest(true);
     setLoading(false);
-  };
-
-  const logout = () => {
-    localStorage.removeItem(TOKEN_KEY);
-    localStorage.removeItem('educonnect_token');
-    setToken(null);
-    setUser(null);
-    setIsGuest(false);
-    delete axios.defaults.headers.common['Authorization'];
   };
 
   const updateUser = (updatedUser) => setUser(updatedUser);

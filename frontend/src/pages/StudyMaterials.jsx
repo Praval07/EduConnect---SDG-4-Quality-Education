@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import axios from 'axios';
 import {
   FiSearch, FiDownload, FiBookmark, FiFilter,
-  FiExternalLink, FiPlus, FiX, FiBook
+  FiPlus, FiX, FiBook
 } from 'react-icons/fi';
 
 const categories = ['All', 'Programming', 'Web Development', 'React', 'Node.js', 'MongoDB', 'Python', 'DSA', 'DBMS', 'OS', 'CN'];
@@ -45,7 +45,9 @@ const ResourceCard = ({ resource }) => {
     setDownloading(true);
     try {
       await axios.post(`/api/resources/${resource._id}/download`);
-    } catch { }
+    } catch (err) {
+      console.warn('Failed to track download count:', err);
+    }
     setTimeout(() => {
       setDownloading(false);
       window.open(resource.fileUrl || '#', '_blank');

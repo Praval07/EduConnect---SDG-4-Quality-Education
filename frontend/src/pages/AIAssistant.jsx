@@ -1,9 +1,10 @@
+/* eslint-disable react-hooks/purity */
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
-import { FiSend, FiMessageSquare, FiTrash2, FiCopy, FiCheck, FiZap, FiUser } from 'react-icons/fi';
+import { FiSend, FiTrash2, FiCopy, FiCheck, FiZap, FiUser } from 'react-icons/fi';
 
 const suggestedPrompts = [
   '🔢 Explain DBMS normalization with examples',
