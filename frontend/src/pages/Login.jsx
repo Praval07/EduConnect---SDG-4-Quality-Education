@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
-import { FiMail, FiLock, FiEye, FiEyeOff, FiArrowRight } from 'react-icons/fi';
+import { FiMail, FiLock, FiEye, FiEyeOff, FiArrowRight, FiSkipForward } from 'react-icons/fi';
 
 const Login = () => {
   const { login } = useAuth();
@@ -133,6 +133,27 @@ const Login = () => {
           <div className="mt-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-xl text-xs text-center text-blue-700 dark:text-blue-400">
             💡 Register a new account to get started instantly — it's free!
           </div>
+
+          {/* Skip / Guest */}
+          <div className="mt-4 relative flex items-center">
+            <div className="flex-grow border-t border-gray-200 dark:border-gray-700" />
+            <span className="mx-3 text-xs text-gray-400">or</span>
+            <div className="flex-grow border-t border-gray-200 dark:border-gray-700" />
+          </div>
+          <motion.button
+            type="button"
+            id="skip-login-btn"
+            onClick={() => navigate('/')}
+            whileHover={{ scale: 1.01 }}
+            whileTap={{ scale: 0.99 }}
+            className="w-full flex items-center justify-center gap-2 py-3 mt-3 text-sm text-gray-500 dark:text-gray-400 border border-dashed border-gray-300 dark:border-gray-600 rounded-xl hover:border-gray-400 dark:hover:border-gray-500 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-all"
+          >
+            <FiSkipForward size={15} />
+            Skip for now — Browse as Guest
+          </motion.button>
+          <p className="text-center text-xs text-gray-400 mt-2">
+            Some features require an account
+          </p>
         </div>
       </motion.div>
     </div>

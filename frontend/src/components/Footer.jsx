@@ -53,6 +53,7 @@ const Footer = () => {
             <ul className="space-y-2.5">
               {[
                 { to: '/', label: 'Home' },
+                { to: '/about', label: 'About Us' },
                 { to: '/dashboard', label: 'Dashboard' },
                 { to: '/materials', label: 'Study Materials' },
                 { to: '/videos', label: 'Educational Videos' },

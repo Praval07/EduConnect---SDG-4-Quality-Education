@@ -5,7 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import {
   FiHome, FiGrid, FiBook, FiVideo, FiMessageSquare,
-  FiUser, FiMail, FiLogOut, FiMenu, FiX, FiSun, FiMoon
+  FiUser, FiMail, FiLogOut, FiMenu, FiX, FiSun, FiMoon, FiInfo
 } from 'react-icons/fi';
 
 const navLinks = [
@@ -15,6 +15,7 @@ const navLinks = [
   { to: '/videos', label: 'Videos', icon: FiVideo, protected: true },
   { to: '/ai-assistant', label: 'AI Assistant', icon: FiMessageSquare, protected: true },
   { to: '/profile', label: 'Profile', icon: FiUser, protected: true },
+  { to: '/about', label: 'About', icon: FiInfo },
   { to: '/contact', label: 'Contact', icon: FiMail },
 ];
 

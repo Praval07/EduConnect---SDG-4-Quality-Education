@@ -13,6 +13,7 @@ import Videos from './pages/Videos';
 import AIAssistant from './pages/AIAssistant';
 import Profile from './pages/Profile';
 import Contact from './pages/Contact';
+import About from './pages/About';
 import NotFound from './pages/NotFound';
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/about" element={<About />} />
                 <Route path="/dashboard" element={
                   <ProtectedRoute><Dashboard /></ProtectedRoute>
                 } />
