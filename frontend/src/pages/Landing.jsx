@@ -1,0 +1,497 @@
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import {
+  FiArrowRight, FiBook, FiVideo, FiMessageSquare, FiUsers,
+  FiStar, FiCheckCircle, FiZap, FiShield, FiGlobe, FiTrendingUp
+} from 'react-icons/fi';
+import AnimatedCounter from '../components/AnimatedCounter';
+
+const fadeIn = (delay = 0) => ({
+  initial: { opacity: 0, y: 30 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+  transition: { duration: 0.6, delay, ease: 'easeOut' },
+});
+
+const stats = [
+  { value: 50000, label: 'Students Served', suffix: '+', icon: FiUsers, color: 'text-blue-600' },
+  { value: 1200, label: 'Resources Available', suffix: '+', icon: FiBook, color: 'text-emerald-600' },
+  { value: 500, label: 'Educational Videos', suffix: '+', icon: FiVideo, color: 'text-amber-600' },
+  { value: 20, label: 'Subjects Covered', suffix: '+', icon: FiTrendingUp, color: 'text-purple-600' },
+];
+
+const features = [
+  {
+    icon: FiBook,
+    title: 'Premium Study Materials',
+    description: 'Access curated notes, PDFs, slides and resources across 20+ subjects — from DSA to Web Development.',
+    color: 'from-blue-500 to-blue-600',
+    bg: 'bg-blue-50 dark:bg-blue-900/20',
+  },
+  {
+    icon: FiVideo,
+    title: 'Educational Videos',
+    description: 'Watch handpicked YouTube tutorials from top educators. Search, filter, and save videos for later.',
+    color: 'from-emerald-500 to-emerald-600',
+    bg: 'bg-emerald-50 dark:bg-emerald-900/20',
+  },
+  {
+    icon: FiMessageSquare,
+    title: 'AI Study Assistant',
+    description: 'ChatGPT-style AI assistant that explains concepts, creates study plans, and answers all your academic questions.',
+    color: 'from-purple-500 to-purple-600',
+    bg: 'bg-purple-50 dark:bg-purple-900/20',
+  },
+  {
+    icon: FiTrendingUp,
+    title: 'Progress Tracking',
+    description: 'Monitor your learning journey with a personalized dashboard showing resources downloaded, videos watched, and AI sessions.',
+    color: 'from-amber-500 to-amber-600',
+    bg: 'bg-amber-50 dark:bg-amber-900/20',
+  },
+  {
+    icon: FiShield,
+    title: 'Secure & Private',
+    description: 'JWT-authenticated accounts, secure data storage, and privacy-first design to protect your learning journey.',
+    color: 'from-red-500 to-red-600',
+    bg: 'bg-red-50 dark:bg-red-900/20',
+  },
+  {
+    icon: FiGlobe,
+    title: 'SDG 4 Aligned',
+    description: 'Committed to the UN Sustainable Development Goal 4: ensuring inclusive and equitable quality education for all.',
+    color: 'from-teal-500 to-teal-600',
+    bg: 'bg-teal-50 dark:bg-teal-900/20',
+  },
+];
+
+const testimonials = [
+  {
+    name: 'Priya Sharma',
+    role: 'B.Tech CSE, IIT Delhi',
+    text: 'EduConnect AI completely transformed how I prepare for exams. The AI assistant is incredible — it explains complex DBMS concepts in minutes!',
+    rating: 5,
+    avatar: 'P',
+    color: 'from-blue-500 to-indigo-600',
+  },
+  {
+    name: 'Rahul Kumar',
+    role: 'MCA Student, DU',
+    text: 'The study materials quality is top-notch. Downloaded DSA notes and React guides — all perfectly organized and beginner-friendly.',
+    rating: 5,
+    avatar: 'R',
+    color: 'from-emerald-500 to-teal-600',
+  },
+  {
+    name: 'Ananya Singh',
+    role: 'Software Engineer, TCS',
+    text: 'Used EduConnect AI during my placement prep. The AI study assistant helped me create a personalized 30-day roadmap. Got placed at TCS!',
+    rating: 5,
+    avatar: 'A',
+    color: 'from-purple-500 to-pink-600',
+  },
+  {
+    name: 'Dev Patel',
+    role: 'Full Stack Developer',
+    text: 'The video library is amazing. Curated tutorials from the best teachers on YouTube, all in one place. Saved me so much time!',
+    rating: 5,
+    avatar: 'D',
+    color: 'from-amber-500 to-orange-600',
+  },
+];
+
+const faqs = [
+  {
+    q: 'Is EduConnect AI free to use?',
+    a: 'Yes! EduConnect AI is completely free for students. Create an account and get immediate access to all study materials, videos, and the AI assistant.',
+  },
+  {
+    q: 'What subjects does EduConnect AI cover?',
+    a: 'We cover 20+ subjects including DSA, DBMS, OS, Computer Networks, Web Development (React, Node.js, MongoDB), Python, JavaScript, and more.',
+  },
+  {
+    q: 'How does the AI Study Assistant work?',
+    a: 'Our AI assistant uses advanced natural language processing to understand your questions and provide detailed, structured explanations with code examples and study tips.',
+  },
+  {
+    q: 'Can I download study materials offline?',
+    a: 'Yes! All PDF notes and resources can be downloaded for offline use. Simply click the download button on any resource card.',
+  },
+  {
+    q: 'Is my data secure?',
+    a: 'Absolutely. We use JWT authentication, bcrypt password hashing, and follow industry-standard security practices to protect your account and data.',
+  },
+];
+
+const FAQItem = ({ q, a }) => {
+  const [open, setOpen] = useState(false);
+  return (
+    <motion.div
+      className="border border-gray-200 dark:border-gray-700 rounded-2xl overflow-hidden"
+      whileHover={{ borderColor: '#2563EB' }}
+    >
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center justify-between p-5 text-left hover:bg-blue-50/50 dark:hover:bg-blue-900/10 transition-colors"
+        id={`faq-${q.substring(0, 20).replace(/\s/g, '-')}`}
+      >
+        <span className="font-medium text-gray-900 dark:text-white pr-4">{q}</span>
+        <motion.span
+          animate={{ rotate: open ? 45 : 0 }}
+          className="text-blue-600 text-xl font-light flex-shrink-0"
+        >
+          +
+        </motion.span>
+      </button>
+      <motion.div
+        initial={false}
+        animate={{ height: open ? 'auto' : 0 }}
+        style={{ overflow: 'hidden' }}
+      >
+        <p className="px-5 pb-5 text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+          {a}
+        </p>
+      </motion.div>
+    </motion.div>
+  );
+};
+
+import { useState } from 'react';
+
+const Landing = () => {
+  return (
+    <div className="overflow-hidden">
+      {/* Hero Section */}
+      <section className="relative min-h-[90vh] flex items-center gradient-hero">
+        {/* Background decorations */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-40 -right-40 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl" />
+          <div className="absolute -bottom-20 -left-40 w-80 h-80 bg-emerald-400/10 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-3xl" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Left Content */}
+            <div>
+              <motion.div {...fadeIn(0)} className="mb-6">
+                <span className="sdg-badge">🎓 SDG 4 — Quality Education</span>
+              </motion.div>
+
+              <motion.h1
+                {...fadeIn(0.1)}
+                className="text-4xl sm:text-5xl lg:text-6xl font-bold font-poppins text-gray-900 dark:text-white leading-tight mb-6"
+              >
+                Empowering Education{' '}
+                <span className="gradient-text">Through Technology</span>
+              </motion.h1>
+
+              <motion.p
+                {...fadeIn(0.2)}
+                className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-8 max-w-lg"
+              >
+                Access premium study materials, educational videos, and an AI-powered study assistant — all in one platform built for students who want to excel.
+              </motion.p>
+
+              <motion.div {...fadeIn(0.3)} className="flex flex-wrap gap-4 mb-10">
+                <Link to="/register" id="hero-start-learning">
+                  <motion.span
+                    whileHover={{ scale: 1.03, y: -2 }}
+                    whileTap={{ scale: 0.97 }}
+                    className="inline-flex items-center gap-2 px-7 py-3.5 bg-blue-600 text-white font-semibold rounded-2xl shadow-xl shadow-blue-500/30 hover:bg-blue-700 transition-all text-sm"
+                  >
+                    Start Learning Free
+                    <FiArrowRight size={16} />
+                  </motion.span>
+                </Link>
+                <Link to="/contact" id="hero-explore">
+                  <motion.span
+                    whileHover={{ scale: 1.03, y: -2 }}
+                    whileTap={{ scale: 0.97 }}
+                    className="inline-flex items-center gap-2 px-7 py-3.5 bg-white dark:bg-gray-800 text-gray-800 dark:text-white font-semibold rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 transition-all text-sm"
+                  >
+                    Explore Resources
+                  </motion.span>
+                </Link>
+              </motion.div>
+
+              {/* Trust Indicators */}
+              <motion.div {...fadeIn(0.4)} className="flex flex-wrap items-center gap-6">
+                {[
+                  { icon: '✅', text: 'Free Forever' },
+                  { icon: '🔒', text: 'Secure & Private' },
+                  { icon: '🎓', text: 'SDG 4 Certified' },
+                ].map(item => (
+                  <div key={item.text} className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                    <span>{item.icon}</span>
+                    <span>{item.text}</span>
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+
+            {/* Right — Hero Visual */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.85 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
+              className="hidden lg:block"
+            >
+              <div className="relative">
+                {/* Main Card */}
+                <div className="glass-white dark:glass-dark rounded-3xl p-6 shadow-2xl shadow-blue-500/10 border border-gray-200/50 dark:border-white/10">
+                  {/* Dashboard Preview */}
+                  <div className="flex items-center gap-3 mb-5">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-emerald-500 flex items-center justify-center text-white font-bold text-sm">E</div>
+                    <div>
+                      <p className="font-semibold text-gray-900 dark:text-white text-sm">EduConnect AI Dashboard</p>
+                      <p className="text-xs text-gray-500">Welcome back, Student 👋</p>
+                    </div>
+                    <div className="ml-auto w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
+                  </div>
+                  <div className="grid grid-cols-2 gap-3 mb-5">
+                    {[
+                      { label: 'Resources', value: '1,200+', color: 'bg-blue-50 dark:bg-blue-900/30', icon: '📚' },
+                      { label: 'Videos', value: '500+', color: 'bg-emerald-50 dark:bg-emerald-900/30', icon: '🎥' },
+                      { label: 'AI Sessions', value: '∞', color: 'bg-purple-50 dark:bg-purple-900/30', icon: '🤖' },
+                      { label: 'Subjects', value: '20+', color: 'bg-amber-50 dark:bg-amber-900/30', icon: '📖' },
+                    ].map(item => (
+                      <div key={item.label} className={`${item.color} rounded-2xl p-3 text-center`}>
+                        <div className="text-xl mb-1">{item.icon}</div>
+                        <div className="font-bold text-gray-900 dark:text-white text-sm">{item.value}</div>
+                        <div className="text-xs text-gray-500">{item.label}</div>
+                      </div>
+                    ))}
+                  </div>
+                  {/* AI Chat Preview */}
+                  <div className="bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-3 space-y-2">
+                    <div className="flex items-start gap-2">
+                      <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0">
+                        <span className="text-white text-xs">U</span>
+                      </div>
+                      <div className="bg-blue-600 text-white text-xs rounded-2xl rounded-tl-none px-3 py-2">
+                        Explain React Hooks
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <div className="w-6 h-6 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center flex-shrink-0">
+                        <span className="text-white text-xs">AI</span>
+                      </div>
+                      <div className="bg-white dark:bg-gray-700 shadow-sm text-gray-700 dark:text-gray-200 text-xs rounded-2xl rounded-tl-none px-3 py-2">
+                        React Hooks are functions that let you use state and lifecycle features in functional components...
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Floating badges */}
+                <motion.div
+                  animate={{ y: [-5, 5, -5] }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                  className="absolute -top-4 -right-4 bg-white dark:bg-gray-800 shadow-xl rounded-2xl px-3 py-2 border border-gray-100 dark:border-gray-700"
+                >
+                  <div className="flex items-center gap-1.5">
+                    <FiZap size={14} className="text-amber-500" />
+                    <span className="text-xs font-semibold text-gray-800 dark:text-white">AI Powered</span>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  animate={{ y: [5, -5, 5] }}
+                  transition={{ duration: 3.5, repeat: Infinity }}
+                  className="absolute -bottom-4 -left-4 bg-emerald-500 shadow-xl rounded-2xl px-3 py-2"
+                >
+                  <div className="flex items-center gap-1.5">
+                    <FiCheckCircle size={14} className="text-white" />
+                    <span className="text-xs font-semibold text-white">Free Access</span>
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-16 bg-white dark:bg-gray-900/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+            {stats.map((stat, i) => {
+              const Icon = stat.icon;
+              return (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: i * 0.1 }}
+                  className="text-center"
+                >
+                  <div className={`inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gray-50 dark:bg-gray-800 mb-3 ${stat.color}`}>
+                    <Icon size={22} />
+                  </div>
+                  <div className="text-4xl font-bold font-poppins text-gray-900 dark:text-white mb-1">
+                    <AnimatedCounter target={stat.value} suffix={stat.suffix} />
+                  </div>
+                  <div className="text-gray-500 dark:text-gray-400 text-sm">{stat.label}</div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-20 bg-[#F8FAFC] dark:bg-[#0F172A]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div {...fadeIn()} className="text-center mb-16">
+            <span className="inline-block px-4 py-1.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-sm font-semibold rounded-full mb-4">
+              Everything You Need
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold font-poppins text-gray-900 dark:text-white mb-4">
+              Premium Features Built for{' '}
+              <span className="gradient-text">Modern Students</span>
+            </h2>
+            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              From AI-powered assistance to curated study materials — everything designed to make learning more effective and enjoyable.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {features.map((feature, i) => {
+              const Icon = feature.icon;
+              return (
+                <motion.div
+                  key={feature.title}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: i * 0.1 }}
+                  whileHover={{ y: -6 }}
+                  className="bg-white dark:bg-gray-800/50 rounded-3xl p-6 shadow-lg shadow-gray-100/50 dark:shadow-none border border-gray-100 dark:border-gray-700/50 cursor-default card-hover"
+                >
+                  <div className={`inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br ${feature.color} mb-4 shadow-lg`}>
+                    <Icon size={20} className="text-white" />
+                  </div>
+                  <h3 className="font-semibold font-poppins text-gray-900 dark:text-white mb-2 text-lg">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                    {feature.description}
+                  </p>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-20 bg-white dark:bg-gray-900/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div {...fadeIn()} className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold font-poppins text-gray-900 dark:text-white mb-4">
+              Loved by <span className="gradient-text">Students Worldwide</span>
+            </h2>
+            <p className="text-gray-600 dark:text-gray-400">Real stories from real students who transformed their learning journey</p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {testimonials.map((t, i) => (
+              <motion.div
+                key={t.name}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                whileHover={{ y: -6 }}
+                className="bg-white dark:bg-gray-800 rounded-3xl p-5 shadow-lg border border-gray-100 dark:border-gray-700"
+              >
+                <div className="flex gap-0.5 mb-4">
+                  {Array(t.rating).fill(0).map((_, i) => (
+                    <FiStar key={i} size={14} className="text-amber-400 fill-amber-400" />
+                  ))}
+                </div>
+                <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed mb-4 italic">"{t.text}"</p>
+                <div className="flex items-center gap-3">
+                  <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${t.color} flex items-center justify-center text-white font-bold text-sm`}>
+                    {t.avatar}
+                  </div>
+                  <div>
+                    <p className="font-semibold text-gray-900 dark:text-white text-sm">{t.name}</p>
+                    <p className="text-xs text-gray-500">{t.role}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-20 bg-[#F8FAFC] dark:bg-[#0F172A]">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div {...fadeIn()} className="text-center mb-12">
+            <h2 className="text-3xl font-bold font-poppins text-gray-900 dark:text-white mb-4">
+              Frequently Asked <span className="gradient-text">Questions</span>
+            </h2>
+          </motion.div>
+          <div className="space-y-3">
+            {faqs.map((faq, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+              >
+                <FAQItem q={faq.q} a={faq.a} />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 left-1/4 w-64 h-64 bg-white/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-48 h-48 bg-blue-300/10 rounded-full blur-3xl" />
+        </div>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
+          <motion.div {...fadeIn()}>
+            <h2 className="text-3xl sm:text-4xl font-bold font-poppins text-white mb-4">
+              Ready to Transform Your Learning?
+            </h2>
+            <p className="text-blue-200 text-lg mb-8">
+              Join 50,000+ students already using EduConnect AI to ace their studies.
+            </p>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <Link to="/register" id="cta-register">
+                <motion.span
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-white text-blue-700 font-bold rounded-2xl shadow-2xl hover:bg-blue-50 transition-all"
+                >
+                  Get Started Free
+                  <FiArrowRight />
+                </motion.span>
+              </Link>
+              <Link to="/login">
+                <motion.span
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 text-white font-bold rounded-2xl border border-white/20 hover:bg-white/20 transition-all"
+                >
+                  Already have an account? Login
+                </motion.span>
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default Landing;
