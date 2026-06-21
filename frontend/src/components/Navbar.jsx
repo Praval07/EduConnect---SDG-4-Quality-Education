@@ -54,9 +54,9 @@ const Navbar = () => {
             <Link to="/" className="flex items-center gap-2.5 group">
               <motion.div
                 whileHover={{ rotate: 5, scale: 1.05 }}
-                className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-600 via-blue-700 to-yellow-400 flex items-center justify-center shadow-lg shadow-blue-500/30"
+                className="w-9 h-9 rounded-xl overflow-hidden flex items-center justify-center shadow-md border border-gray-100 dark:border-gray-800"
               >
-                <span className="text-white text-xs font-bold font-poppins leading-none">RR</span>
+                <img src="/logo.png" alt="Rapid Revision Hub Logo" className="w-full h-full object-cover" />
               </motion.div>
               <div className="hidden sm:block">
                 <span className="text-base font-bold font-poppins gradient-text">Rapid Revision</span>
@@ -172,8 +172,8 @@ const Navbar = () => {
               {/* Header */}
               <div className="flex items-center justify-between p-4 border-b border-gray-100 dark:border-gray-800">
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-yellow-400 flex items-center justify-center">
-                    <span className="text-white text-xs font-bold">RR</span>
+                  <div className="w-8 h-8 rounded-lg overflow-hidden flex items-center justify-center border border-gray-100 dark:border-gray-800">
+                    <img src="/logo.png" alt="Logo" className="w-full h-full object-cover" />
                   </div>
                   <span className="font-bold font-poppins text-sm gradient-text">Rapid Revision Hub</span>
                 </div>
