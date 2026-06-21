@@ -4,8 +4,8 @@ import axios from 'axios';
 import { FiUser, FiMail, FiMessageSquare, FiSend, FiCheckCircle, FiPhone, FiMapPin } from 'react-icons/fi';
 
 const contactInfo = [
-  { icon: FiMail, label: 'Email', value: 'support@educonnect.ai' },
-  { icon: FiPhone, label: 'Phone', value: '+91 98765 43210' },
+  { icon: FiMail, label: 'Email', value: 'rapidrevisionhub@gmail.com' },
+  { icon: FiPhone, label: 'Phone', value: '7533828012' },
   { icon: FiMapPin, label: 'Location', value: 'India · Serving Globally' },
 ];
 
@@ -37,7 +37,7 @@ const Contact = () => {
           Get In <span className="gradient-text">Touch</span>
         </h1>
         <p className="text-gray-600 dark:text-gray-400 max-w-lg mx-auto">
-          Have questions about EduConnect AI? We'd love to hear from you. Send us a message and we'll respond within 24 hours.
+          Have questions about Rapid Revision Hub? We'd love to hear from you. Send us a message and we'll respond within 24 hours.
         </p>
       </motion.div>
 
@@ -75,7 +75,7 @@ const Contact = () => {
           <div className="bg-white dark:bg-gray-800/50 rounded-2xl p-5 shadow-md border border-gray-100 dark:border-gray-700/50">
             <h3 className="font-semibold text-gray-900 dark:text-white mb-3 text-sm">SDG 4 — Our Mission</h3>
             <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed">
-              EduConnect AI is committed to the United Nations Sustainable Development Goal 4: ensuring inclusive and equitable quality education and promoting lifelong learning opportunities for all by 2030.
+              Rapid Revision Hub is committed to the United Nations Sustainable Development Goal 4: ensuring inclusive and equitable quality education and promoting lifelong learning opportunities for all by 2030.
             </p>
             <div className="mt-3">
               <span className="sdg-badge">🎓 SDG 4 — Quality Education</span>

@@ -17,7 +17,7 @@ const useFetch = (url, options = {}) => {
     setLoading(true);
     setError(null);
     try {
-      const token = localStorage.getItem('educonnect_token');
+      const token = localStorage.getItem('rrh_token') || localStorage.getItem('educonnect_token');
       const headers = token ? { Authorization: `Bearer ${token}` } : {};
       const res = await axios.get(url, { headers, ...options });
       setData(res.data);

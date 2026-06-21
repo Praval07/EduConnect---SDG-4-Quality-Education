@@ -1,5 +1,5 @@
 /**
- * Utility helper functions for EduConnect AI
+ * Utility helper functions for Rapid Revision Hub
  */
 
 /**

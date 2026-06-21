@@ -24,12 +24,13 @@ app.use('/api/videos', require('./routes/videos'));
 app.use('/api/profile', require('./routes/profile'));
 app.use('/api/contact', require('./routes/contact'));
 app.use('/api/assistant', require('./routes/ai'));
+app.use('/api/ai', require('./routes/ai'));
 
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ 
     status: 'OK', 
-    message: 'EduConnect AI API is running! 🚀', 
+    message: 'Rapid Revision Hub AI API is running! 🚀', 
     timestamp: new Date().toISOString(),
     sdg: 'SDG 4 — Quality Education'
   });
@@ -45,7 +46,7 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`🚀 EduConnect AI Server running on http://localhost:${PORT}`);
+  console.log(`🚀 Rapid Revision Hub AI Server running on http://localhost:${PORT}`);
   console.log(`📚 SDG 4 — Quality Education Platform`);
   console.log(`🌍 Environment: ${process.env.NODE_ENV}`);
 });

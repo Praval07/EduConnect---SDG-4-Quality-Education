@@ -1,5 +1,7 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
+const memoryDb = require('../utils/memoryDb');
+const bcrypt = require('bcryptjs');
 
 const generateToken = (id) =>
   jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '30d' });
@@ -36,6 +38,51 @@ const register = async (req, res) => {
       return res.status(400).json({
         success: false,
         message: 'Password must be at least 6 characters',
+      });
+    }
+
+    if (!memoryDb.isDbConnected()) {
+      const existingUser = memoryDb.mockUsers.find(u => u.email === email.toLowerCase().trim());
+      if (existingUser) {
+        return res.status(400).json({
+          success: false,
+          message: 'Email is already registered. Please login instead.',
+        });
+      }
+
+      const hashedPassword = await bcrypt.hash(password, 12);
+      const newUser = {
+        _id: 'user_' + Date.now(),
+        name: name.trim(),
+        email: email.toLowerCase().trim(),
+        mobile: mobile || '',
+        password: hashedPassword,
+        college: college || '',
+        course: course || '',
+        branch: branch || '',
+        semester: semester || '',
+        avatar: '',
+        role: 'student',
+        stats: {
+          resourcesDownloaded: 0,
+          videosWatched: 0,
+          aiQueries: 0,
+          savedResources: 0,
+          aiSessions: 0,
+        },
+        savedResourceIds: [],
+        watchLater: [],
+        createdAt: new Date(),
+      };
+
+      memoryDb.mockUsers.push(newUser);
+      const token = generateToken(newUser._id);
+
+      return res.status(201).json({
+        success: true,
+        message: 'Welcome to Rapid Revision Hub! Your account is ready (Mock Mode).',
+        token,
+        user: formatUser(newUser),
       });
     }
 
@@ -85,6 +132,27 @@ const login = async (req, res) => {
       return res.status(400).json({ success: false, message: 'Please provide email and password' });
     }
 
+    if (!memoryDb.isDbConnected()) {
+      const user = memoryDb.mockUsers.find(u => u.email === email.toLowerCase().trim());
+      if (!user) {
+        return res.status(401).json({ success: false, message: 'Invalid email or password' });
+      }
+
+      const isMatch = await bcrypt.compare(password, user.password);
+      if (!isMatch) {
+        return res.status(401).json({ success: false, message: 'Invalid email or password' });
+      }
+
+      const token = generateToken(user._id);
+
+      return res.json({
+        success: true,
+        message: 'Login successful! Welcome back to Rapid Revision Hub (Mock Mode).',
+        token,
+        user: formatUser(user),
+      });
+    }
+
     const user = await User.findOne({ email: email.toLowerCase() }).select('+password');
     if (!user) {
       return res.status(401).json({ success: false, message: 'Invalid email or password' });
@@ -112,7 +180,7 @@ const login = async (req, res) => {
 // @route   GET /api/auth/me
 // @access  Private
 const getMe = async (req, res) => {
-  res.json({ success: true, user: req.user });
+  res.json({ success: true, user: formatUser(req.user) });
 };
 
 module.exports = { register, login, getMe };

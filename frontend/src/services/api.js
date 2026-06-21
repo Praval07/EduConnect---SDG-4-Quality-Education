@@ -8,7 +8,7 @@ const api = axios.create({
 // Request interceptor
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('educonnect_token');
+    const token = localStorage.getItem('rrh_token') || localStorage.getItem('educonnect_token');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -22,6 +22,7 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
+      localStorage.removeItem('rrh_token');
       localStorage.removeItem('educonnect_token');
       window.location.href = '/login';
     }

@@ -353,9 +353,8 @@ Here's what I can help you with:
 
 *Ask me anything about your studies — I'm here to help you succeed! 🎓*`;
 };
-
 // @desc    AI Chat
-// @route   POST /api/assistant/chat
+// @route   POST /api/assistant/chat or /api/ai/chat
 // @access  Private
 const chat = async (req, res) => {
   try {
@@ -365,19 +364,53 @@ const chat = async (req, res) => {
       return res.status(400).json({ success: false, message: 'Message is required' });
     }
 
-    // Update user AI query stats
-    await require('../models/User').findByIdAndUpdate(
-      req.user._id,
-      { $inc: { 'stats.aiQueries': 1, 'stats.aiSessions': 1 } }
-    );
+    // Update user AI query stats if logged in (non-guest)
+    if (req.user && req.user._id) {
+      await require('../models/User').findByIdAndUpdate(
+        req.user._id,
+        { $inc: { 'stats.aiQueries': 1, 'stats.aiSessions': 1 } }
+      ).catch(() => {}); // ignore db write error for robust guest behavior
+    }
 
-    // Try OpenAI if key exists, else use mock
     let response;
-    if (process.env.OPENAI_API_KEY) {
+    const apiKey = process.env.GEMINI_API_KEY;
+
+    if (apiKey) {
       try {
-        // OpenAI integration placeholder
-        response = getMockResponse(message);
-      } catch {
+        const { GoogleGenerativeAI } = require('@google/generative-ai');
+        const genAI = new GoogleGenerativeAI(apiKey);
+        const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+        
+        const systemPrompt = "You are a helpful and intelligent AI Study Assistant for Rapid Revision Hub. Your role is to help students learn and revise their coursework, specifically focusing on Computer Science topics (DBMS, DSA, OS, CN, Python, Java, React, Node.js, MongoDB). Use markdown formatting in your responses, including lists, bold text, and code blocks with syntax highlighting where appropriate. Keep your explanations clear, concise, and structured.";
+
+        let chatHistory = [];
+        let history = null;
+
+        // Retrieve conversation history if session is provided and database is active
+        if (sessionId && req.user) {
+          try {
+            history = await AIHistory.findById(sessionId);
+            if (history && history.messages) {
+              const recentMessages = history.messages.slice(-10);
+              chatHistory = recentMessages.map(msg => ({
+                role: msg.role === 'user' ? 'user' : 'model',
+                parts: [{ text: msg.content }]
+              }));
+            }
+          } catch (dbErr) {
+            console.error('Failed to retrieve chat history from db:', dbErr.message);
+          }
+        }
+
+        const chatSession = model.startChat({
+          history: chatHistory,
+          systemInstruction: systemPrompt,
+        });
+
+        const result = await chatSession.sendMessage(message);
+        response = result.response.text();
+      } catch (geminiError) {
+        console.error('Gemini API Error:', geminiError.message);
         response = getMockResponse(message);
       }
     } else {
@@ -386,34 +419,37 @@ const chat = async (req, res) => {
       response = getMockResponse(message);
     }
 
-    // Save to AI History
-    try {
-      let history = sessionId ? await AIHistory.findById(sessionId) : null;
+    // Save to AI History if user is logged in
+    if (req.user && req.user._id) {
+      try {
+        let history = sessionId ? await AIHistory.findById(sessionId) : null;
 
-      if (!history) {
-        history = new AIHistory({
-          userId: req.user._id,
-          sessionTitle: message.substring(0, 50),
-          messages: [],
-        });
+        if (!history) {
+          history = new AIHistory({
+            userId: req.user._id,
+            sessionTitle: message.substring(0, 50),
+            messages: [],
+          });
+        }
+
+        history.messages.push({ role: 'user', content: message });
+        history.messages.push({ role: 'assistant', content: response });
+        history.updatedAt = Date.now();
+        await history.save();
+
+        return res.json({ success: true, response, reply: response, sessionId: history._id });
+      } catch (dbError) {
+        // If DB fails, still return response
+        return res.json({ success: true, response, reply: response });
       }
-
-      history.messages.push({ role: 'user', content: message });
-      history.messages.push({ role: 'assistant', content: response });
-      history.updatedAt = Date.now();
-      await history.save();
-
-      res.json({ success: true, response, sessionId: history._id });
-    } catch (dbError) {
-      // If DB fails, still return response
-      res.json({ success: true, response });
     }
+
+    // Guest response
+    return res.json({ success: true, response, reply: response });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
 };
-
-const AIHistory = require('../models/AIHistory');
 
 // @desc    Get AI history
 // @route   GET /api/assistant/history

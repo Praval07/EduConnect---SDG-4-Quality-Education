@@ -4,7 +4,7 @@ const ThemeContext = createContext(null);
 
 export const ThemeProvider = ({ children }) => {
   const [isDark, setIsDark] = useState(() => {
-    const saved = localStorage.getItem('educonnect_theme');
+    const saved = localStorage.getItem('rrh_theme');
     if (saved) return saved === 'dark';
     return window.matchMedia('(prefers-color-scheme: dark)').matches;
   });
@@ -12,10 +12,10 @@ export const ThemeProvider = ({ children }) => {
   useEffect(() => {
     if (isDark) {
       document.documentElement.classList.add('dark');
-      localStorage.setItem('educonnect_theme', 'dark');
+      localStorage.setItem('rrh_theme', 'dark');
     } else {
       document.documentElement.classList.remove('dark');
-      localStorage.setItem('educonnect_theme', 'light');
+      localStorage.setItem('rrh_theme', 'light');
     }
   }, [isDark]);
 

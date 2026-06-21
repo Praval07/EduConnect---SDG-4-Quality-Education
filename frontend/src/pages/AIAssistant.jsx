@@ -94,7 +94,7 @@ const AIAssistant = () => {
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
-      content: `## 👋 Hello, ${user?.name?.split(' ')[0] || 'Student'}!\n\nI'm your **EduConnect AI Study Assistant** — powered by advanced AI to help you learn faster and smarter.\n\n### What can I help you with?\n- 📚 **Explain concepts** — DBMS, DSA, OS, CN, React, Node.js\n- 📝 **Create study notes** — Structured markdown notes on any topic\n- 🗓️ **Study plans** — Personalized roadmaps for interviews or exams\n- 💡 **Code examples** — Working code snippets with explanations\n- ❓ **Answer questions** — Any academic or programming question\n\nJust type your question or pick a suggestion below! 🚀`,
+      content: `## 👋 Hello, ${user?.name?.split(' ')[0] || 'Student'}!\n\nI'm your **Rapid Revision Hub AI Study Assistant** — powered by advanced AI to help you learn faster and smarter.\n\n### What can I help you with?\n- 📚 **Explain concepts** — DBMS, DSA, OS, CN, React, Node.js\n- 📝 **Create study notes** — Structured markdown notes on any topic\n- 🗓️ **Study plans** — Personalized roadmaps for interviews or exams\n- 💡 **Code examples** — Working code snippets with explanations\n- ❓ **Answer questions** — Any academic or programming question\n\nJust type your question or pick a suggestion below! 🚀`,
       timestamp: Date.now(),
     }
   ]);
@@ -245,7 +245,7 @@ const AIAssistant = () => {
           </motion.button>
         </div>
         <p className="text-xs text-gray-400 text-center mt-2">
-          Shift+Enter for new line · Enter to send · Powered by EduConnect AI
+          Shift+Enter for new line · Enter to send · Powered by Rapid Revision Hub AI
         </p>
       </motion.div>
     </div>

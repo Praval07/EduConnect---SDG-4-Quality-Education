@@ -11,7 +11,7 @@ const videoSchema = new mongoose.Schema({
   youtubeId: { type: String, required: true },
   thumbnail: { type: String, default: '' },
   duration: { type: String, default: '' },
-  instructor: { type: String, default: 'EduConnect' },
+  instructor: { type: String, default: 'Rapid Revision Hub' },
   views: { type: Number, default: 0 },
   likes: { type: Number, default: 0 },
   trending: { type: Boolean, default: false },

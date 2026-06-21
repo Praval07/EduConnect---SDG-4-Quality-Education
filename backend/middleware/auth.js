@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const memoryDb = require('../utils/memoryDb');
 
 const protect = async (req, res, next) => {
   let token;
@@ -14,6 +15,16 @@ const protect = async (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    if (!memoryDb.isDbConnected()) {
+      const user = memoryDb.mockUsers.find(u => u._id === decoded.id);
+      if (!user) {
+        return res.status(401).json({ success: false, message: 'User not found.' });
+      }
+      req.user = user;
+      return next();
+    }
+
     req.user = await User.findById(decoded.id).select('-password');
 
     if (!req.user) {

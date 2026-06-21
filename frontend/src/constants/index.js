@@ -2,8 +2,8 @@
  * App-wide constants for EduConnect AI
  */
 
-export const APP_NAME = 'EduConnect AI';
-export const APP_TAGLINE = 'Empowering Education Through Technology';
+export const APP_NAME = 'Rapid Revision Hub';
+export const APP_TAGLINE = 'Learn Smarter. Revise Faster.';
 export const APP_URL = 'http://localhost:5173';
 export const API_URL = '/api';
 
@@ -63,5 +63,6 @@ export const SOCIAL_LINKS = {
   twitter: '#',
   linkedin: '#',
   instagram: '#',
-  email: 'support@educonnect.ai',
+  email: 'rapidrevisionhub@gmail.com',
+  phone: '7533828012',
 };

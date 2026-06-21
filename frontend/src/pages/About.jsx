@@ -56,7 +56,7 @@ const team = [
   {
     name: 'Praval',
     role: 'Founder & Full Stack Developer',
-    bio: 'Passionate about bridging the gap between quality education and technology. Built EduConnect AI to democratize learning.',
+    bio: 'Passionate about bridging the gap between quality education and technology. Built Rapid Revision Hub to democratize learning.',
     initials: 'P',
     color: 'from-blue-500 to-indigo-600',
     github: 'https://github.com/Praval07',
@@ -64,10 +64,10 @@ const team = [
 ];
 
 const milestones = [
-  { year: '2026', title: 'Project Inception', desc: 'EduConnect AI was conceptualized as an SDG 4 academic project to democratize learning.' },
+  { year: '2026', title: 'Project Inception', desc: 'Rapid Revision Hub was conceptualized as an SDG 4 academic project to democratize learning.' },
   { year: '2026', title: 'MVP Launch', desc: 'First version launched with 12 curated study resources and 10 educational videos.' },
   { year: '2026', title: 'AI Integration', desc: 'ChatGPT-style AI Study Assistant added — answers questions on 20+ CS subjects.' },
-  { year: 'Now', title: 'Growing Platform', desc: 'Open to students everywhere. Register free and help shape the future of EduConnect AI.' },
+  { year: 'Now', title: 'Growing Platform', desc: 'Open to students everywhere. Register free and help shape the future of Rapid Revision Hub.' },
 ];
 
 const sdgTargets = [
@@ -95,7 +95,7 @@ const About = () => {
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
             className="text-4xl sm:text-5xl lg:text-6xl font-bold font-poppins text-gray-900 dark:text-white leading-tight mb-6"
           >
-            About <span className="gradient-text">EduConnect AI</span>
+            About <span className="gradient-text">Rapid Revision Hub</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
@@ -149,17 +149,17 @@ const About = () => {
                 Our Story
               </span>
               <h2 className="text-3xl sm:text-4xl font-bold font-poppins text-gray-900 dark:text-white mb-5 leading-tight">
-                Why We Built <span className="gradient-text">EduConnect AI</span>
+                Why We Built <span className="gradient-text">Rapid Revision Hub</span>
               </h2>
               <div className="space-y-4 text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
                 <p>
-                  EduConnect AI was born from a simple observation: millions of students struggle to access quality educational resources, personalized guidance, and interactive learning tools — not because they lack the drive to learn, but because the right tools aren't available to them.
+                  Rapid Revision Hub was born from a simple observation: millions of students struggle to access quality educational resources, personalized guidance, and interactive learning tools — not because they lack the drive to learn, but because the right tools aren't available to them.
                 </p>
                 <p>
                   We set out to build a platform that combines the best of Coursera, Khan Academy, and ChatGPT into a single, free, student-first platform aligned with the UN's Sustainable Development Goal 4 — Quality Education for All.
                 </p>
                 <p>
-                  EduConnect AI is a new platform — built with real passion, real code, and a real commitment to SDG 4. It currently offers 12 curated study resources, 10 handpicked educational videos across 20+ CS subjects, and an AI study assistant available 24/7. Everything is free.
+                  Rapid Revision Hub is a new platform — built with real passion, real code, and a real commitment to SDG 4. It currently offers 12 curated study resources, 10 handpicked educational videos across 20+ CS subjects, and an AI study assistant available 24/7. Everything is free.
                 </p>
               </div>
               <div className="mt-6 flex flex-wrap gap-3">
@@ -291,7 +291,7 @@ const About = () => {
                 <span className="gradient-text">Quality Education</span>
               </h2>
               <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-5">
-                The United Nations Sustainable Development Goal 4 aims to "ensure inclusive and equitable quality education and promote lifelong learning opportunities for all" by 2030. EduConnect AI is our contribution toward achieving this goal.
+                The United Nations Sustainable Development Goal 4 aims to "ensure inclusive and equitable quality education and promote lifelong learning opportunities for all" by 2030. Rapid Revision Hub is our contribution toward achieving this goal.
               </p>
               <div className="space-y-2.5">
                 {sdgTargets.map((target, i) => (
@@ -350,7 +350,7 @@ const About = () => {
               Ready to Join Our Mission?
             </h2>
             <p className="text-blue-200 mb-7 text-sm">
-              Register free and be among the first students on EduConnect AI.
+              Register free and be among the first students on Rapid Revision Hub.
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
               <Link to="/register" id="about-cta-register">

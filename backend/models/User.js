@@ -18,7 +18,12 @@ const userSchema = new mongoose.Schema({
   mobile: {
     type: String,
     default: '',
-    match: [/^[6-9]\d{9}$/, 'Please enter a valid 10-digit mobile number'],
+    validate: {
+      validator: function(v) {
+        return v === '' || /^[6-9]\d{9}$/.test(v);
+      },
+      message: 'Please enter a valid 10-digit mobile number'
+    }
   },
   password: {
     type: String,
