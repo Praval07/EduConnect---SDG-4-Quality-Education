@@ -7,7 +7,7 @@
     "server": "cd backend && nodemon server.js",
     "client": "cd frontend && npm run dev",
     "dev": "npm run server & npm run client",
-    "build": "cd frontend && npm run build",
+    "build": "cd frontend && npm install && npm run build",
     "seed": "cd backend && node seed/seedData.js",
     "install:all": "cd backend && npm install && cd ../frontend && npm install"
   },
