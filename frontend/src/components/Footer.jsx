@@ -27,7 +27,7 @@ const Footer = () => {
               {[
                 { Icon: FiGithub, href: 'https://github.com/Praval07', label: 'GitHub' },
                 { Icon: FiTwitter, href: '#', label: 'Twitter' },
-                { Icon: FiLinkedin, href: '#', label: 'LinkedIn' },
+                { Icon: FiLinkedin, href: 'https://www.linkedin.com/in/praval-saxena-287214311/', label: 'LinkedIn' },
                 { Icon: FiInstagram, href: '#', label: 'Instagram' },
               ].map(({ Icon, href, label }) => (
                 <motion.a key={label} href={href} target="_blank" rel="noopener noreferrer"

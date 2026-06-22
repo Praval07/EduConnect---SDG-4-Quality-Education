@@ -282,7 +282,7 @@ const About = () => {
                     className="w-9 h-9 rounded-xl bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-500 hover:bg-blue-600 hover:text-white transition-all">
                     <FiGithub size={16} />
                   </a>
-                  <a href="#" className="w-9 h-9 rounded-xl bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-500 hover:bg-blue-600 hover:text-white transition-all">
+                  <a href="https://www.linkedin.com/in/praval-saxena-287214311/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-xl bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-500 hover:bg-blue-600 hover:text-white transition-all">
                     <FiLinkedin size={16} />
                   </a>
                   <a href="#" className="w-9 h-9 rounded-xl bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-500 hover:bg-blue-600 hover:text-white transition-all">
