@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Rapid Revision Hub Banner](screenshots/home.png)
+![Rapid Revision Hub Banner](screenshots/banner-rrh.jpg)
 
 **A premium EdTech platform empowering education through AI technology**
 
@@ -19,28 +19,9 @@
 
 ---
 
-## # Live Demo
+## 🔗 Live Demo
 
 Production Website: [https://rapid-revision-hub.vercel.app](https://rapid-revision-hub.vercel.app)
-
----
-
-## # Deployment
-
-Deployed using **Vercel + GitHub Integration** for the frontend, with automatic continuous deployment triggered on every push to the `main` branch.
-
----
-
-## # Author
-
-**Praval Saxena**
-
----
-
-## # Contact
-
-* 📞 **Phone:** 7533828012
-* 📧 **Email:** [rapidrevisionhub@gmail.com](mailto:rapidrevisionhub@gmail.com)
 
 ---
 
@@ -52,10 +33,11 @@ Deployed using **Vercel + GitHub Integration** for the frontend, with automatic 
 - [Tech Stack](#-tech-stack)
 - [Screenshots](#-screenshots)
 - [Installation Guide](#-installation-guide)
+- [Environment Variables](#-environment-variables)
 - [API Documentation](#-api-documentation)
 - [Deployment Guide](#-deployment-guide)
 - [Project Structure](#-project-structure)
-- [Contributing](#-contributing)
+- [Author Information](#-author-information)
 - [License](#-license)
 
 ---
@@ -64,7 +46,7 @@ Deployed using **Vercel + GitHub Integration** for the frontend, with automatic 
 
 **Rapid Revision Hub** is a world-class, full-stack EdTech platform built to make quality education accessible to all students. Inspired by platforms like Coursera, Khan Academy, Notion, and ChatGPT, it combines premium design with practical features including AI-powered assistance, curated study materials, educational videos, and a personalized learning dashboard.
 
-The platform is designed with a portfolio-quality, startup-grade aesthetic — glassmorphism UI, smooth Framer Motion animations, dark/light mode, fully responsive design, and production-ready code architecture.
+The platform is designed with a portfolio-quality, startup-grade aesthetic — glassmorphism UI, smooth Framer Motion animations, dark/light mode, purple/yellow accents, fully responsive design, and production-ready code architecture.
 
 ### Mission
 > *"Learn Smarter. Revise Faster."* — Making quality education universally accessible, aligned with the United Nations Sustainable Development Goal 4.
@@ -92,66 +74,58 @@ This project directly supports **UN Sustainable Development Goal 4: Quality Educ
 ## ✨ Features
 
 ### 🏠 Landing Page
-- Modern hero section with SDG 4 badge
-- Animated statistics with IntersectionObserver counters
-- Features grid with hover animations
-- Student testimonials
-- Interactive FAQ accordion
-- Compelling CTA section
+- Modern hero section with SDG 4 badge and interactive elements.
+- Uses the official **Rapid Revision Hub** banner image (`banner-rrh.jpg`).
+- Animated statistics with IntersectionObserver counters.
+- Features grid with hover animations.
+- Student testimonials and an interactive FAQ accordion.
 
 ### 🔐 Authentication
-- JWT-based user registration and login
-- Bcrypt password hashing
-- Protected routes with auto-redirect
-- Persistent login via localStorage
-- Logout functionality
-- Guest mode access
+- JWT-based user registration and login.
+- Password strength meter + match validation in Register.
+- Skip button fully functional — browse the platform as a Guest.
+- Persistent login via custom `rrh_token` state.
 
-### 📊 Dashboard
-- SaaS-style stat cards (Resources, Saved, Videos, AI Sessions)
-- Quick action buttons with icon cards
-- Study goal progress bars with animated fill
-- Recent activity feed
-- Recommended resources widget
-- Personalized greeting
+### 📊 Student Dashboard
+- SaaS-style stat cards (Resources Downloaded, Saved Resources, Videos Watched, AI Sessions).
+- Study goal progress bars with animated fill.
+- Quick action buttons with icon cards.
+- Recent activity feed and recommended resources widget.
 
 ### 📚 Study Materials
-- 12+ categorized educational resources (DSA, DBMS, OS, CN, Python, Java, React, Node.js, MongoDB)
-- Real-time search with debouncing
-- Category filter chips
-- Resource cards with download/save
-- Download count tracking
-- Pagination support
-- Sort functionality
+- 12+ categorized educational resources (DSA, DBMS, OS, Computer Networks, Python, Java, React, NodeJS, MongoDB).
+- Real-time search with debouncing.
+- Category filter chips and resource cards with download/save functionality.
+- Download count tracking and pagination support.
 
 ### 🎥 Educational Videos
-- YouTube embed player modal
-- Video thumbnail grid with category filters
-- Trending toggle filter
-- Watch Later bookmark functionality
-- View count display
-- Instructor info and duration
+- Real YouTube integration matching official channels.
+- YouTube embed player modal.
+- Video thumbnail grid with category filters and "Trending" toggle.
+- "Watch Later" bookmark functionality.
 
 ### 🤖 AI Study Assistant
-- ChatGPT-style conversation UI with typing indicators
-- Markdown rendering for rich responses
-- Real-time intelligent Google Gemini API integration with conversation history and context awareness
-- Copy message to clipboard
-- Suggested prompts
-- Session management
+- ChatGPT-style conversation UI with typing indicators and copy-to-clipboard.
+- Markdown rendering for rich answers.
+- Real-time intelligent Google Gemini API integration with conversation history.
+- Suggested prompt chips to jump-start study sessions.
 
 ### 👤 Student Profile
-- Avatar with initials
-- Editable profile form (name, college, branch, semester)
-- Skills management with suggestions
-- Learning statistics display
-- SDG 4 learner badge
+- Avatar with student initials.
+- Editable profile form (name, college, course, branch, semester, mobile number).
+- Skills management with tag suggestions.
+- SDG 4 learner badge.
 
 ### 📞 Contact Page
-- Modern contact form with validation
-- Success toast notification on submission
-- Contact information display
-- SDG 4 mission statement
+- Modern contact form with validation.
+- Success toast notification on submission.
+- Direct contact details and SDG 4 mission statement.
+
+### 🔑 Admin Dashboard
+- Restricted admin portal accessible at `/admin-panel-rrh-2026` for administrative accounts.
+- View and manage study resources and video library.
+- View user-submitted messages and contact requests.
+- Detailed administrative statistics.
 
 ---
 
@@ -190,8 +164,8 @@ This project directly supports **UN Sustainable Development Goal 4: Quality Educ
 ![Home](screenshots/home.png)
 
 ### Authentication
-![Register](screenshots/register.png)
 ![Login](screenshots/login.png)
+![Register](screenshots/register.png)
 
 ### Dashboard
 ![Dashboard](screenshots/dashboard.png)
@@ -202,14 +176,17 @@ This project directly supports **UN Sustainable Development Goal 4: Quality Educ
 ### Educational Videos
 ![Videos](screenshots/videos.png)
 
-### AI Study Assistant
+### AI Assistant
 ![AI Assistant](screenshots/ai-assistant.png)
 
-### Student Profile
+### Profile
 ![Profile](screenshots/profile.png)
 
-### Contact Page
+### Contact
 ![Contact](screenshots/contact.png)
+
+### Admin Dashboard
+![Admin Dashboard](screenshots/admin-dashboard.png)
 
 ---
 
@@ -227,39 +204,47 @@ git clone https://github.com/Praval07/EduConnect---SDG-4-Quality-Education.git
 cd EduConnect---SDG-4-Quality-Education
 ```
 
-### 2. Backend Setup
+### 2. Install Dependencies
+You can install both frontend and backend dependencies using the root helper script:
 ```bash
-cd backend
-npm install
+npm run install:all
 ```
 
-Create `.env` file:
+### 3. Configure Environment Variables
+Create `.env` files in both the `backend/` and `frontend/` folders. (See [Environment Variables](#-environment-variables) below).
+
+### 4. Seed Database
+Optional step to populate the database with mock resources and videos:
+```bash
+npm run seed
+```
+
+### 5. Run Locally
+To run both backend server and frontend client concurrently:
+```bash
+npm run dev
+```
+
+---
+
+## 🔑 Environment Variables
+
+### Backend (`backend/.env`)
+Create a file named `.env` in the `backend` directory:
 ```env
 PORT=5000
-MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/rapidrevision?retryWrites=true&w=majority
+MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/database_name?retryWrites=true&w=majority
 JWT_SECRET=your_super_secret_jwt_key_change_in_production
 NODE_ENV=development
 GEMINI_API_KEY=your_google_gemini_api_key_here
 ```
 
-Start backend:
-```bash
-npm start
+### Frontend (`frontend/.env`)
+Create a file named `.env` in the `frontend` directory:
+```env
+VITE_API_URL=http://localhost:5000
+VITE_GEMINI_API_KEY=your_google_gemini_api_key_here
 ```
-
-Optionally seed the database:
-```bash
-npm run seed
-```
-
-### 3. Frontend Setup
-```bash
-cd ../frontend
-npm install
-npm run dev
-```
-
-Open `http://localhost:5173` in your browser.
 
 ---
 
@@ -271,7 +256,6 @@ Open `http://localhost:5173` in your browser.
 ```
 
 ### Authentication Routes
-
 | Method | Endpoint | Description | Auth Required |
 |--------|----------|-------------|---------------|
 | POST | `/auth/register` | Register new user | No |
@@ -279,7 +263,6 @@ Open `http://localhost:5173` in your browser.
 | GET | `/auth/me` | Get current user | Yes |
 
 ### Resource Routes
-
 | Method | Endpoint | Description | Auth |
 |--------|----------|-------------|------|
 | GET | `/resources` | Get all resources | No |
@@ -289,13 +272,11 @@ Open `http://localhost:5173` in your browser.
 | POST | `/resources/:id/download` | Track download | No |
 
 ### Video Routes
-
 | Method | Endpoint | Description | Auth |
 |--------|----------|-------------|------|
 | GET | `/videos` | Get all videos | No |
 
 ### Profile Routes
-
 | Method | Endpoint | Description | Auth |
 |--------|----------|-------------|------|
 | GET | `/profile` | Get user profile | Yes |
@@ -303,13 +284,11 @@ Open `http://localhost:5173` in your browser.
 | POST | `/profile/save-resource/:id` | Toggle saved resource | Yes |
 
 ### Contact Route
-
 | Method | Endpoint | Description | Auth |
 |--------|----------|-------------|------|
 | POST | `/contact` | Submit contact form | No |
 
 ### AI Assistant Routes
-
 | Method | Endpoint | Description | Auth |
 |--------|----------|-------------|------|
 | POST | `/ai/chat` | Send message to Gemini | Yes |
@@ -317,13 +296,72 @@ Open `http://localhost:5173` in your browser.
 
 ---
 
-## 🤝 Contributing
+## 🚀 Deployment Guide
 
-1. Fork the repository
-2. Create your feature branch: `git checkout -b feature/AmazingFeature`
-3. Commit your changes: `git commit -m 'Add AmazingFeature'`
-4. Push to the branch: `git push origin feature/AmazingFeature`
-5. Open a Pull Request
+### Frontend Deployment (Vercel)
+The frontend is built using React + Vite and deployed on Vercel.
+1. Connect your GitHub repository to Vercel.
+2. Configure build settings:
+   - **Framework Preset:** Vite
+   - **Build Command:** `npm run build`
+   - **Output Directory:** `dist`
+   - **Root Directory:** `frontend`
+3. Add environment variables `VITE_API_URL` and `VITE_GEMINI_API_KEY` to Vercel settings.
+4. Click deploy. Vercel automatically deploys every push to the `main` branch.
+
+### Backend Deployment (Express.js)
+The backend can be deployed to Render, Heroku, or any Node.js hosting platform.
+1. Create a new Web Service on your hosting provider.
+2. Connect your GitHub repository.
+3. Configure settings:
+   - **Build Command:** `cd backend && npm install`
+   - **Start Command:** `cd backend && node server.js`
+4. Define the backend environment variables on your server dashboard.
+
+---
+
+## 📂 Project Structure
+
+```
+EduConnect---SDG-4-Quality-Education/
+├── backend/
+│   ├── config/          # Database configuration
+│   ├── controllers/     # Route logic (auth, resource, video, ai, contact)
+│   ├── middleware/      # Auth validation
+│   ├── models/          # Mongoose Schemas (User, Resource, Video, Contact, AIHistory)
+│   ├── routes/          # Express route definitions
+│   ├── seed/            # Seeding scripts
+│   ├── utils/           # Helper scripts & In-memory database fallback
+│   ├── server.js        # Entry point
+│   └── package.json
+├── frontend/
+│   ├── public/          # Static assets (logos, banner)
+│   ├── src/
+│   │   ├── components/  # Reusable UI widgets
+│   │   ├── context/     # Auth and Theme providers
+│   │   ├── hooks/       # Custom hooks (debounce, fetch, localStorage)
+│   │   ├── pages/       # Page components (Landing, Login, Register, Dashboard, etc.)
+│   │   ├── services/    # Axios API client setup
+│   │   ├── utils/       # Utility helper functions
+│   │   ├── App.jsx      # Main application router
+│   │   ├── index.css    # Style configuration
+│   │   └── main.jsx
+│   ├── package.json
+│   └── vite.config.js
+├── screenshots/         # Latest UI screenshots
+├── vercel.json          # Vercel SPA routing rules
+└── package.json         # Root monorepo scripts
+```
+
+---
+
+## 👤 Author Information
+
+**Author:** Praval Saxena
+- 📧 **Email:** [rapidrevisionhub@gmail.com](mailto:rapidrevisionhub@gmail.com)
+- 📞 **Phone:** +91 7533828012
+- 🔗 **LinkedIn:** [Praval Saxena](https://www.linkedin.com/in/praval-saxena-287214311/)
+- 🐙 **GitHub:** [@Praval07](https://github.com/Praval07)
 
 ---
 

@@ -1,5 +1,5 @@
 /**
- * App-wide constants for EduConnect AI
+ * App-wide constants for Rapid Revision Hub
  */
 
 export const APP_NAME = 'Rapid Revision Hub';

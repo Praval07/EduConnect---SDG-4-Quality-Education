@@ -322,7 +322,7 @@ const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
   // Default intelligent response
   const topic = message.length > 50 ? message.substring(0, 50) + '...' : message;
-  return `## 🤖 EduConnect AI Study Assistant
+  return `## 🤖 Rapid Revision Hub Study Assistant
 
 I understand you're asking about: **"${topic}"**
 

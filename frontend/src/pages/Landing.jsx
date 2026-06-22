@@ -211,7 +211,7 @@ const Landing = () => {
               <div className="relative group overflow-hidden rounded-3xl p-2 bg-gradient-to-br from-purple-500/20 to-yellow-500/20 border border-purple-500/30 shadow-2xl shadow-purple-500/10">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-yellow-500 rounded-3xl blur opacity-30 group-hover:opacity-50 transition duration-1000 group-hover:duration-200" />
                 <div className="relative bg-[#050816] rounded-[22px] overflow-hidden">
-                  <img src="/banner.png" alt="Rapid Revision Hub Banner" className="w-full h-auto object-cover float-animation" />
+                  <img src="/banner-rrh.jpg" alt="Rapid Revision Hub Banner" className="w-full h-auto object-cover float-animation" />
                 </div>
               </div>
             </motion.div>
