@@ -92,18 +92,36 @@ const Message = ({ msg }) => {
 
 const AIAssistant = () => {
   const { user } = useAuth();
-  const [messages, setMessages] = useState([
-    {
-      role: 'assistant',
-      content: `## 👋 Hello, ${user?.name?.split(' ')[0] || 'Student'}!\n\nI'm your **Rapid Revision Hub AI Study Assistant** — powered by advanced AI to help you learn faster and smarter.\n\n### What can I help you with?\n- 📚 **Explain concepts** — DBMS, DSA, OS, CN, React, Node.js\n- 📝 **Create study notes** — Structured markdown notes on any topic\n- 🗓️ **Study plans** — Personalized roadmaps for interviews or exams\n- 💡 **Code examples** — Working code snippets with explanations\n- ❓ **Answer questions** — Any academic or programming question\n\nJust type your question or pick a suggestion below! 🚀`,
-      timestamp: Date.now(),
-    }
-  ]);
+  const [messages, setMessages] = useState(() => {
+    const saved = localStorage.getItem('rrh_chat_history');
+    if (saved) return JSON.parse(saved);
+    return [
+      {
+        role: 'assistant',
+        content: `## 👋 Hello, ${user?.name?.split(' ')[0] || 'Student'}!\n\nI'm your **Rapid Revision Hub AI Study Assistant** — powered by advanced AI to help you learn faster and smarter.\n\n### What can I help you with?\n- 📚 **Explain concepts** — DBMS, DSA, OS, CN, React, Node.js\n- 📝 **Create study notes** — Structured markdown notes on any topic\n- 🗓️ **Study plans** — Personalized roadmaps for interviews or exams\n- 💡 **Code examples** — Working code snippets with explanations\n- ❓ **Answer questions** — Any academic or programming question\n\nJust type your question or pick a suggestion below! 🚀`,
+        timestamp: Date.now(),
+      }
+    ];
+  });
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  const [sessionId, setSessionId] = useState(null);
+  const [sessionId, setSessionId] = useState(() => {
+    return localStorage.getItem('rrh_chat_session_id') || null;
+  });
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
+
+  useEffect(() => {
+    localStorage.setItem('rrh_chat_history', JSON.stringify(messages));
+  }, [messages]);
+
+  useEffect(() => {
+    if (sessionId) {
+      localStorage.setItem('rrh_chat_session_id', sessionId);
+    } else {
+      localStorage.removeItem('rrh_chat_session_id');
+    }
+  }, [sessionId]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -139,8 +157,17 @@ const AIAssistant = () => {
   };
 
   const clearChat = () => {
-    setMessages([messages[0]]);
+    const initialMsg = [
+      {
+        role: 'assistant',
+        content: `## 👋 Hello, ${user?.name?.split(' ')[0] || 'Student'}!\n\nI'm your **Rapid Revision Hub AI Study Assistant** — powered by advanced AI to help you learn faster and smarter.\n\n### What can I help you with?\n- 📚 **Explain concepts** — DBMS, DSA, OS, CN, React, Node.js\n- 📝 **Create study notes** — Structured markdown notes on any topic\n- 🗓️ **Study plans** — Personalized roadmaps for interviews or exams\n- 💡 **Code examples** — Working code snippets with explanations\n- ❓ **Answer questions** — Any academic or programming question\n\nJust type your question or pick a suggestion below! 🚀`,
+        timestamp: Date.now(),
+      }
+    ];
+    setMessages(initialMsg);
     setSessionId(null);
+    localStorage.removeItem('rrh_chat_history');
+    localStorage.removeItem('rrh_chat_session_id');
   };
 
   return (

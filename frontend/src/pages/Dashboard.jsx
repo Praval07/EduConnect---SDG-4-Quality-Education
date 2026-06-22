@@ -83,7 +83,7 @@ const Dashboard = () => {
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="mb-8"
+        className="mb-6"
       >
         <div className="flex items-start justify-between">
           <div>
@@ -98,6 +98,27 @@ const Dashboard = () => {
             )}
           </div>
           <span className="sdg-badge hidden sm:flex">🎓 SDG 4</span>
+        </div>
+      </motion.div>
+
+      {/* Welcome Banner Card */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="relative overflow-hidden rounded-3xl p-6 bg-gradient-to-r from-purple-900/40 via-indigo-950/40 to-slate-900/40 border border-purple-500/20 shadow-xl mb-8 flex flex-col md:flex-row items-center gap-6"
+      >
+        <div className="flex-1 z-10">
+          <span className="sdg-badge mb-3">🎓 SDG 4 Aligned</span>
+          <h2 className="text-xl sm:text-2xl font-bold font-poppins text-white mb-2">
+            Welcome to Rapid Revision Hub, {user?.name?.split(' ')[0] || 'Student'}!
+          </h2>
+          <p className="text-gray-300 text-sm max-w-xl leading-relaxed">
+            Access free premium handwritten notes, video lectures, and our state-of-the-art AI study assistant to accelerate your revision process and master your engineering concepts.
+          </p>
+        </div>
+        <div className="w-full md:w-64 max-w-xs overflow-hidden rounded-2xl border border-purple-500/30 bg-[#050816] shadow-lg flex-shrink-0">
+          <img src="/banner.png" alt="Rapid Revision Hub Brand Asset" className="w-full h-auto object-cover" />
         </div>
       </motion.div>
 

@@ -18,6 +18,7 @@ import Contact from './pages/Contact';
 import About from './pages/About';
 import AboutSDG from './pages/AboutSDG';
 import NotFound from './pages/NotFound';
+import AdminDashboard from './pages/AdminDashboard';
 
 function App() {
   return (
@@ -56,6 +57,9 @@ function App() {
                 } />
                 <Route path="/profile" element={
                   <ProtectedRoute><Profile /></ProtectedRoute>
+                } />
+                <Route path="/admin-panel-rrh-2026" element={
+                  <ProtectedRoute><AdminDashboard /></ProtectedRoute>
                 } />
 
                 {/* 404 */}

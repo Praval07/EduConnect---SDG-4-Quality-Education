@@ -40,40 +40,23 @@ const Login = () => {
   return (
     <div className="min-h-screen flex">
       {/* Left Panel — Illustration */}
-      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-blue-700 via-blue-600 to-indigo-700 relative overflow-hidden flex-col justify-center items-center px-12 py-16">
+      <div className="hidden lg:flex lg:w-1/2 bg-[#050816] relative overflow-hidden flex-col justify-center items-center px-12 py-16 border-r border-purple-500/20">
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-white/5 rounded-full blur-3xl" />
-          <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-yellow-300/10 rounded-full blur-3xl" />
+          <div className="absolute -top-40 -right-40 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
+          <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-yellow-500/5 rounded-full blur-3xl" />
         </div>
-        <div className="relative z-10 text-white text-center max-w-md">
+        <div className="relative z-10 text-white text-center max-w-md w-full">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
-            <div className="w-20 h-20 rounded-2xl bg-white/10 backdrop-blur flex items-center justify-center mx-auto mb-6 shadow-2xl border border-white/20">
-              <span className="text-white text-2xl font-bold font-poppins">RR</span>
+            <div className="relative group overflow-hidden rounded-2xl p-1 bg-gradient-to-br from-purple-500/20 to-yellow-500/20 border border-purple-500/30 shadow-2xl mb-8">
+              <div className="relative bg-[#050816] rounded-xl overflow-hidden animate-pulse">
+                <img src="/banner.png" alt="Rapid Revision Hub Banner" className="w-full h-auto object-cover" />
+              </div>
             </div>
-            <h1 className="text-4xl font-bold font-poppins mb-3 leading-tight">
-              Welcome to<br /><span className="text-yellow-300">Rapid Revision Hub</span>
+            <h1 className="text-3xl font-bold font-poppins mb-2 leading-tight">
+              Rapid Revision <span className="text-yellow-300">Hub</span>
             </h1>
-            <p className="text-blue-200 text-lg mb-10">Learn Smarter. Revise Faster.</p>
+            <p className="text-gray-300 text-base mb-8">Learn Smarter. Revise Faster.</p>
           </motion.div>
-          <div className="grid grid-cols-2 gap-4">
-            {[
-              { icon: FiBook, title: 'Study Materials', desc: 'Curated resources' },
-              { icon: FiVideo, title: 'Video Library', desc: 'Best tutorials' },
-              { icon: FiMessageSquare, title: 'AI Assistant', desc: 'ChatGPT-style' },
-              { icon: FiZap, title: 'Quick Revision', desc: 'Learn smarter' },
-            ].map((item, i) => {
-              const Icon = item.icon;
-              return (
-                <motion.div key={item.title} initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.4 + i * 0.1 }}
-                  className="bg-white/10 backdrop-blur rounded-2xl p-4 border border-white/10 text-left"
-                >
-                  <Icon size={20} className="text-yellow-300 mb-2" />
-                  <p className="font-semibold text-sm">{item.title}</p>
-                  <p className="text-blue-200 text-xs mt-0.5">{item.desc}</p>
-                </motion.div>
-              );
-            })}
-          </div>
         </div>
       </div>
 

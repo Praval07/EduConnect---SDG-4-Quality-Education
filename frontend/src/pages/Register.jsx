@@ -60,20 +60,22 @@ const Register = () => {
   return (
     <div className="min-h-screen flex">
       {/* Left Panel */}
-      <div className="hidden lg:flex lg:w-5/12 bg-gradient-to-br from-blue-700 via-blue-600 to-indigo-700 flex-col justify-center items-center px-10 py-16 relative overflow-hidden">
+      <div className="hidden lg:flex lg:w-5/12 bg-[#050816] relative overflow-hidden flex-col justify-center items-center px-10 py-16 border-r border-purple-500/20">
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-white/5 rounded-full blur-3xl" />
-          <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-yellow-300/10 rounded-full blur-3xl" />
+          <div className="absolute -top-40 -right-40 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
+          <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-yellow-500/5 rounded-full blur-3xl" />
         </div>
-        <div className="relative z-10 text-white text-center max-w-sm">
+        <div className="relative z-10 text-white text-center max-w-sm w-full">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="w-20 h-20 rounded-2xl bg-white/10 backdrop-blur flex items-center justify-center mx-auto mb-6 border border-white/20">
-              <span className="text-white text-2xl font-bold font-poppins">RR</span>
+            <div className="relative group overflow-hidden rounded-2xl p-1 bg-gradient-to-br from-purple-500/20 to-yellow-500/20 border border-purple-500/30 shadow-2xl mb-8">
+              <div className="relative bg-[#050816] rounded-xl overflow-hidden animate-pulse">
+                <img src="/banner.png" alt="Rapid Revision Hub Banner" className="w-full h-auto object-cover" />
+              </div>
             </div>
-            <h1 className="text-3xl font-bold font-poppins mb-3">Join <span className="text-yellow-300">Rapid Revision Hub</span></h1>
-            <p className="text-blue-200 mb-10">Free forever. No credit card needed.</p>
+            <h1 className="text-3xl font-bold font-poppins mb-2">Join <span className="text-yellow-300">Rapid Revision Hub</span></h1>
+            <p className="text-gray-300 mb-8">Free forever. No credit card needed.</p>
           </motion.div>
-          <div className="space-y-3 text-left">
+          <div className="space-y-3 text-left max-w-xs mx-auto">
             {[
               'Access 20+ CS subjects',
               'AI-powered study assistant',
@@ -86,7 +88,7 @@ const Register = () => {
                 className="flex items-center gap-3"
               >
                 <FiCheckCircle size={16} className="text-yellow-300 flex-shrink-0" />
-                <span className="text-blue-100 text-sm">{item}</span>
+                <span className="text-gray-300 text-sm">{item}</span>
               </motion.div>
             ))}
           </div>

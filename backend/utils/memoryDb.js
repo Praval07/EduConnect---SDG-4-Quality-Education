@@ -318,6 +318,31 @@ const seedMockUser = async () => {
     watchLater: ['vid_1', 'vid_2'],
     createdAt: new Date(),
   });
+
+  const hashedAdminPassword = await bcrypt.hash('admin123', 12);
+  mockUsers.push({
+    _id: 'user_admin',
+    name: 'Admin User',
+    email: 'admin@gmail.com',
+    mobile: '9999999999',
+    password: hashedAdminPassword,
+    college: 'System Administration',
+    course: 'Admin',
+    branch: 'IT',
+    semester: 'N/A',
+    avatar: '',
+    role: 'admin',
+    stats: {
+      resourcesDownloaded: 0,
+      videosWatched: 0,
+      aiQueries: 0,
+      savedResources: 0,
+      aiSessions: 0,
+    },
+    savedResourceIds: [],
+    watchLater: [],
+    createdAt: new Date(),
+  });
 };
 
 seedMockUser();

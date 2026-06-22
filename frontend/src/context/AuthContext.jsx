@@ -12,7 +12,9 @@ export const AuthProvider = ({ children }) => {
     localStorage.getItem(TOKEN_KEY) || localStorage.getItem('educonnect_token') // migrate old key
   );
   const [loading, setLoading] = useState(true);
-  const [isGuest, setIsGuest] = useState(false);
+  const [isGuest, setIsGuest] = useState(
+    localStorage.getItem('rrh_is_guest') === 'true'
+  );
 
   // Migrate old token key
   useEffect(() => {
@@ -26,6 +28,7 @@ export const AuthProvider = ({ children }) => {
   const logout = useCallback(() => {
     localStorage.removeItem(TOKEN_KEY);
     localStorage.removeItem('educonnect_token');
+    localStorage.removeItem('rrh_is_guest');
     setToken(null);
     setUser(null);
     setIsGuest(false);
@@ -58,6 +61,7 @@ export const AuthProvider = ({ children }) => {
     const res = await axios.post('/api/auth/login', { email, password });
     const { token: newToken, user: newUser } = res.data;
     localStorage.setItem(TOKEN_KEY, newToken);
+    localStorage.removeItem('rrh_is_guest');
     setToken(newToken);
     setUser(newUser);
     setIsGuest(false);
@@ -69,6 +73,7 @@ export const AuthProvider = ({ children }) => {
     const res = await axios.post('/api/auth/register', data);
     const { token: newToken, user: newUser } = res.data;
     localStorage.setItem(TOKEN_KEY, newToken);
+    localStorage.removeItem('rrh_is_guest');
     setToken(newToken);
     setUser(newUser);
     setIsGuest(false);
@@ -78,6 +83,7 @@ export const AuthProvider = ({ children }) => {
 
   const loginAsGuest = () => {
     setIsGuest(true);
+    localStorage.setItem('rrh_is_guest', 'true');
     setLoading(false);
   };
 

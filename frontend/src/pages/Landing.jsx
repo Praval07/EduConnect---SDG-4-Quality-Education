@@ -27,6 +27,7 @@ const features = [
     description: 'Access curated notes, PDFs, slides and resources across 20+ subjects — from DSA to Web Development.',
     color: 'from-blue-500 to-blue-600',
     bg: 'bg-blue-50 dark:bg-blue-900/20',
+    to: '/study-materials',
   },
   {
     icon: FiVideo,
@@ -34,6 +35,7 @@ const features = [
     description: 'Watch handpicked YouTube tutorials from top educators. Search, filter, and save videos for later.',
     color: 'from-emerald-500 to-emerald-600',
     bg: 'bg-emerald-50 dark:bg-emerald-900/20',
+    to: '/videos',
   },
   {
     icon: FiMessageSquare,
@@ -41,6 +43,7 @@ const features = [
     description: 'ChatGPT-style AI assistant that explains concepts, creates study plans, and answers all your academic questions.',
     color: 'from-purple-500 to-purple-600',
     bg: 'bg-purple-50 dark:bg-purple-900/20',
+    to: '/ai-assistant',
   },
   {
     icon: FiTrendingUp,
@@ -48,6 +51,7 @@ const features = [
     description: 'Monitor your learning journey with a personalized dashboard showing resources downloaded, videos watched, and AI sessions.',
     color: 'from-amber-500 to-amber-600',
     bg: 'bg-amber-50 dark:bg-amber-900/20',
+    to: '/dashboard',
   },
   {
     icon: FiShield,
@@ -55,6 +59,7 @@ const features = [
     description: 'JWT-authenticated accounts, secure data storage, and privacy-first design to protect your learning journey.',
     color: 'from-red-500 to-red-600',
     bg: 'bg-red-50 dark:bg-red-900/20',
+    to: '/profile',
   },
   {
     icon: FiGlobe,
@@ -62,6 +67,7 @@ const features = [
     description: 'Committed to the UN Sustainable Development Goal 4: ensuring inclusive and equitable quality education for all.',
     color: 'from-teal-500 to-teal-600',
     bg: 'bg-teal-50 dark:bg-teal-900/20',
+    to: '/about-sdg',
   },
 ];
 
@@ -147,33 +153,33 @@ const Landing = () => {
                 {...fadeIn(0.1)}
                 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-poppins text-gray-900 dark:text-white leading-tight mb-6"
               >
-                Empowering Education{' '}
-                <span className="gradient-text">Through Technology</span>
+                Rapid Revision{' '}
+                <span className="gradient-text">Hub</span>
               </motion.h1>
 
               <motion.p
                 {...fadeIn(0.2)}
-                className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-8 max-w-lg"
+                className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-8 max-w-lg font-medium"
               >
-                Access premium study materials, educational videos, and an AI-powered study assistant — all in one platform built for students who want to excel.
+                Access handwritten notes, important questions, formulas, educational videos, AI-powered study assistance, and revision resources for engineering and competitive exams.
               </motion.p>
 
               <motion.div {...fadeIn(0.3)} className="flex flex-wrap gap-4 mb-10">
                 <Link to="/register" id="hero-start-learning">
                   <motion.span
-                    whileHover={{ scale: 1.03, y: -2 }}
-                    whileTap={{ scale: 0.97 }}
-                    className="inline-flex items-center gap-2 px-7 py-3.5 bg-blue-600 text-white font-semibold rounded-2xl shadow-xl shadow-blue-500/30 hover:bg-blue-700 transition-all text-sm"
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="inline-flex items-center gap-2 px-7 py-3.5 bg-gradient-to-r from-purple-500 to-indigo-600 text-white font-semibold rounded-2xl shadow-xl shadow-purple-500/25 hover:opacity-95 transition-all text-sm cursor-pointer"
                   >
-                    Start Learning Free
+                    Start Learning
                     <FiArrowRight size={16} />
                   </motion.span>
                 </Link>
-                <Link to="/contact" id="hero-explore">
+                <Link to="/study-materials" id="hero-explore">
                   <motion.span
-                    whileHover={{ scale: 1.03, y: -2 }}
-                    whileTap={{ scale: 0.97 }}
-                    className="inline-flex items-center gap-2 px-7 py-3.5 bg-white dark:bg-gray-800 text-gray-800 dark:text-white font-semibold rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 transition-all text-sm"
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#0F172A] text-white font-semibold rounded-2xl shadow-lg border border-purple-500/30 hover:border-purple-400 transition-all text-sm cursor-pointer"
                   >
                     Explore Resources
                   </motion.span>
@@ -200,77 +206,13 @@ const Landing = () => {
               initial={{ opacity: 0, scale: 0.85 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
-              className="hidden lg:block"
+              className="relative"
             >
-              <div className="relative">
-                {/* Main Card */}
-                <div className="glass-white dark:glass-dark rounded-3xl p-6 shadow-2xl shadow-blue-500/10 border border-gray-200/50 dark:border-white/10">
-                  {/* Dashboard Preview */}
-                  <div className="flex items-center gap-3 mb-5">
-                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-emerald-500 flex items-center justify-center text-white font-bold text-sm">R</div>
-                    <div>
-                      <p className="font-semibold text-gray-900 dark:text-white text-sm">Rapid Revision Hub Dashboard</p>
-                      <p className="text-xs text-gray-500">Welcome back, Student 👋</p>
-                    </div>
-                    <div className="ml-auto w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
-                  </div>
-                  <div className="grid grid-cols-2 gap-3 mb-5">
-                    {[
-                      { label: 'Resources', value: '1,200+', color: 'bg-blue-50 dark:bg-blue-900/30', icon: '📚' },
-                      { label: 'Videos', value: '500+', color: 'bg-emerald-50 dark:bg-emerald-900/30', icon: '🎥' },
-                      { label: 'AI Sessions', value: '∞', color: 'bg-purple-50 dark:bg-purple-900/30', icon: '🤖' },
-                      { label: 'Subjects', value: '20+', color: 'bg-amber-50 dark:bg-amber-900/30', icon: '📖' },
-                    ].map(item => (
-                      <div key={item.label} className={`${item.color} rounded-2xl p-3 text-center`}>
-                        <div className="text-xl mb-1">{item.icon}</div>
-                        <div className="font-bold text-gray-900 dark:text-white text-sm">{item.value}</div>
-                        <div className="text-xs text-gray-500">{item.label}</div>
-                      </div>
-                    ))}
-                  </div>
-                  {/* AI Chat Preview */}
-                  <div className="bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-3 space-y-2">
-                    <div className="flex items-start gap-2">
-                      <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0">
-                        <span className="text-white text-xs">U</span>
-                      </div>
-                      <div className="bg-blue-600 text-white text-xs rounded-2xl rounded-tl-none px-3 py-2">
-                        Explain React Hooks
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-2">
-                      <div className="w-6 h-6 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center flex-shrink-0">
-                        <span className="text-white text-xs">AI</span>
-                      </div>
-                      <div className="bg-white dark:bg-gray-700 shadow-sm text-gray-700 dark:text-gray-200 text-xs rounded-2xl rounded-tl-none px-3 py-2">
-                        React Hooks are functions that let you use state and lifecycle features in functional components...
-                      </div>
-                    </div>
-                  </div>
+              <div className="relative group overflow-hidden rounded-3xl p-2 bg-gradient-to-br from-purple-500/20 to-yellow-500/20 border border-purple-500/30 shadow-2xl shadow-purple-500/10">
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-yellow-500 rounded-3xl blur opacity-30 group-hover:opacity-50 transition duration-1000 group-hover:duration-200" />
+                <div className="relative bg-[#050816] rounded-[22px] overflow-hidden">
+                  <img src="/banner.png" alt="Rapid Revision Hub Banner" className="w-full h-auto object-cover float-animation" />
                 </div>
-
-                {/* Floating badges */}
-                <motion.div
-                  animate={{ y: [-5, 5, -5] }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                  className="absolute -top-4 -right-4 bg-white dark:bg-gray-800 shadow-xl rounded-2xl px-3 py-2 border border-gray-100 dark:border-gray-700"
-                >
-                  <div className="flex items-center gap-1.5">
-                    <FiZap size={14} className="text-amber-500" />
-                    <span className="text-xs font-semibold text-gray-800 dark:text-white">AI Powered</span>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  animate={{ y: [5, -5, 5] }}
-                  transition={{ duration: 3.5, repeat: Infinity }}
-                  className="absolute -bottom-4 -left-4 bg-emerald-500 shadow-xl rounded-2xl px-3 py-2"
-                >
-                  <div className="flex items-center gap-1.5">
-                    <FiCheckCircle size={14} className="text-white" />
-                    <span className="text-xs font-semibold text-white">Free Access</span>
-                  </div>
-                </motion.div>
               </div>
             </motion.div>
           </div>
@@ -333,25 +275,26 @@ const Landing = () => {
             {features.map((feature, i) => {
               const Icon = feature.icon;
               return (
-                <motion.div
-                  key={feature.title}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: i * 0.1 }}
-                  whileHover={{ y: -6 }}
-                  className="bg-white dark:bg-gray-800/50 rounded-3xl p-6 shadow-lg shadow-gray-100/50 dark:shadow-none border border-gray-100 dark:border-gray-700/50 cursor-default card-hover"
-                >
-                  <div className={`inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br ${feature.color} mb-4 shadow-lg`}>
-                    <Icon size={20} className="text-white" />
-                  </div>
-                  <h3 className="font-semibold font-poppins text-gray-900 dark:text-white mb-2 text-lg">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-                    {feature.description}
-                  </p>
-                </motion.div>
+                <Link key={feature.title} to={feature.to} className="block group">
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: i * 0.1 }}
+                    whileHover={{ y: -6 }}
+                    className="bg-[#0F172A] rounded-3xl p-6 shadow-lg shadow-black/30 border border-purple-500/10 hover:border-purple-500/30 cursor-pointer h-full"
+                  >
+                    <div className={`inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br ${feature.color} mb-4 shadow-lg`}>
+                      <Icon size={20} className="text-white" />
+                    </div>
+                    <h3 className="font-semibold font-poppins text-white mb-2 text-lg group-hover:text-purple-300 transition-colors">
+                      {feature.title}
+                    </h3>
+                    <p className="text-gray-400 text-sm leading-relaxed">
+                      {feature.description}
+                    </p>
+                  </motion.div>
+                </Link>
               );
             })}
           </div>
