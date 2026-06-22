@@ -120,20 +120,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* Platform Banner */}
-      <section className="py-6 bg-white dark:bg-gray-900/30">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="w-full rounded-3xl overflow-hidden shadow-2xl border border-gray-200/50 dark:border-gray-800"
-          >
-            <img src="/banner.png" alt="Rapid Revision Hub Banner" className="w-full h-auto object-cover" />
-          </motion.div>
-        </div>
-      </section>
+
 
       {/* Stats Banner — honest numbers only */}
       <section className="bg-blue-600 py-10">

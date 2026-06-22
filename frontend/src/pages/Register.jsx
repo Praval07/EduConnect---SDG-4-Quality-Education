@@ -67,9 +67,10 @@ const Register = () => {
         </div>
         <div className="relative z-10 text-white text-center max-w-sm w-full">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="relative group overflow-hidden rounded-2xl p-1 bg-gradient-to-br from-purple-500/20 to-yellow-500/20 border border-purple-500/30 shadow-2xl mb-8">
-              <div className="relative bg-[#050816] rounded-xl overflow-hidden animate-pulse">
-                <img src="/banner.png" alt="Rapid Revision Hub Banner" className="w-full h-auto object-cover" />
+            <div className="relative group overflow-hidden rounded-3xl p-6 bg-gradient-to-br from-purple-600/20 to-yellow-500/20 border border-purple-500/30 shadow-2xl mb-8 flex items-center justify-center h-40 bg-[#050816]">
+              <div className="absolute inset-0 bg-gradient-to-tr from-purple-600/10 to-transparent opacity-50" />
+              <div className="relative text-yellow-400 text-7xl flex items-center justify-center select-none float-animation">
+                🎓
               </div>
             </div>
             <h1 className="text-3xl font-bold font-poppins mb-2">Join <span className="text-yellow-300">Rapid Revision Hub</span></h1>

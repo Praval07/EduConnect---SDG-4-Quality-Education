@@ -117,8 +117,12 @@ const Dashboard = () => {
             Access free premium handwritten notes, video lectures, and our state-of-the-art AI study assistant to accelerate your revision process and master your engineering concepts.
           </p>
         </div>
-        <div className="w-full md:w-64 max-w-xs overflow-hidden rounded-2xl border border-purple-500/30 bg-[#050816] shadow-lg flex-shrink-0">
-          <img src="/banner.png" alt="Rapid Revision Hub Brand Asset" className="w-full h-auto object-cover" />
+        <div className="w-full md:w-64 max-w-xs overflow-hidden rounded-2xl border border-purple-500/30 bg-gradient-to-br from-[#0B0F19] to-[#1E1B4B] shadow-lg flex-shrink-0 p-5 flex flex-col justify-between h-36">
+          <div className="text-3xl">📚</div>
+          <div>
+            <div className="text-white text-xs font-bold uppercase tracking-wider mb-1">Target SDG 4</div>
+            <div className="text-purple-300 text-[10px] leading-tight font-medium">Providing inclusive, equitable quality revision tools for all.</div>
+          </div>
         </div>
       </motion.div>
 
