@@ -355,6 +355,20 @@ const AdminDashboard = () => {
                   </div>
                 </div>
               </div>
+
+              {/* Developer Information */}
+              <div className="bg-[#0F172A] border border-purple-500/15 rounded-3xl p-6">
+                <h3 className="font-semibold text-lg text-white mb-4 flex items-center gap-2">👨‍💻 Developer Information</h3>
+                <div className="p-5 bg-white/5 rounded-xl border border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+                  <div>
+                    <h4 className="font-bold text-white text-base">Praval Saxena</h4>
+                    <p className="text-gray-400 text-sm">Founder & Full Stack Developer</p>
+                  </div>
+                  <a href="https://www.linkedin.com/in/praval-saxena-287214311/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-5 py-2.5 bg-[#0077B5] hover:bg-[#006097] text-white text-sm font-semibold rounded-xl transition-all shadow-md">
+                    Connect on LinkedIn
+                  </a>
+                </div>
+              </div>
             </div>
           )}
 

@@ -143,9 +143,9 @@ const Landing = () => {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Center Content */}
-            <div className="lg:col-span-2 text-center max-w-3xl mx-auto">
-              <motion.div {...fadeIn(0)} className="mb-6 flex justify-center">
+            {/* Left Content */}
+            <div>
+              <motion.div {...fadeIn(0)} className="mb-6">
                 <span className="sdg-badge">🎓 SDG 4 — Quality Education</span>
               </motion.div>
 
@@ -159,12 +159,12 @@ const Landing = () => {
 
               <motion.p
                 {...fadeIn(0.2)}
-                className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-8 max-w-2xl mx-auto font-medium"
+                className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-8 max-w-lg font-medium"
               >
                 Access handwritten notes, important questions, formulas, educational videos, AI-powered study assistance, and revision resources for engineering and competitive exams.
               </motion.p>
 
-              <motion.div {...fadeIn(0.3)} className="flex flex-wrap justify-center gap-4 mb-10">
+              <motion.div {...fadeIn(0.3)} className="flex flex-wrap gap-4 mb-10">
                 <Link to="/register" id="hero-start-learning">
                   <motion.span
                     whileHover={{ scale: 1.05, y: -2 }}
@@ -184,19 +184,10 @@ const Landing = () => {
                     Explore Resources
                   </motion.span>
                 </Link>
-                <a href="https://www.linkedin.com/in/praval-saxena-287214311/" target="_blank" rel="noopener noreferrer" id="hero-linkedin">
-                  <motion.span
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#0077B5] text-white font-semibold rounded-2xl shadow-lg hover:bg-[#006097] transition-all text-sm cursor-pointer"
-                  >
-                    Connect on LinkedIn
-                  </motion.span>
-                </a>
               </motion.div>
 
               {/* Trust Indicators */}
-              <motion.div {...fadeIn(0.4)} className="flex flex-wrap justify-center items-center gap-6">
+              <motion.div {...fadeIn(0.4)} className="flex flex-wrap items-center gap-6">
                 {[
                   { icon: '✅', text: 'Free Forever' },
                   { icon: '🔒', text: 'Secure & Private' },
@@ -209,6 +200,21 @@ const Landing = () => {
                 ))}
               </motion.div>
             </div>
+
+            {/* Right — Hero Visual */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.85 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
+              className="relative"
+            >
+              <div className="relative group overflow-hidden rounded-3xl p-2 bg-gradient-to-br from-purple-500/20 to-yellow-500/20 border border-purple-500/30 shadow-2xl shadow-purple-500/10">
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-yellow-500 rounded-3xl blur opacity-30 group-hover:opacity-50 transition duration-1000 group-hover:duration-200" />
+                <div className="relative bg-[#050816] rounded-[22px] overflow-hidden">
+                  <img src="/banner.png" alt="Rapid Revision Hub Banner" className="w-full h-auto object-cover float-animation" />
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>

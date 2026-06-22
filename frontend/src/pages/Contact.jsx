@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import axios from 'axios';
-import { FiUser, FiMail, FiMessageSquare, FiSend, FiCheckCircle, FiPhone, FiMapPin } from 'react-icons/fi';
+import { FiUser, FiMail, FiMessageSquare, FiSend, FiCheckCircle, FiPhone, FiMapPin, FiLinkedin } from 'react-icons/fi';
 
 const contactInfo = [
-  { icon: FiMail, label: 'Email', value: 'rapidrevisionhub@gmail.com' },
-  { icon: FiPhone, label: 'Phone', value: '7533828012' },
+  { icon: FiMail, label: 'Email', value: 'rapidrevisionhub@gmail.com', href: 'mailto:rapidrevisionhub@gmail.com' },
+  { icon: FiPhone, label: 'Phone', value: '7533828012', href: 'tel:7533828012' },
+  { icon: FiLinkedin, label: 'LinkedIn', value: 'Praval Saxena', href: 'https://www.linkedin.com/in/praval-saxena-287214311/' },
   { icon: FiMapPin, label: 'Location', value: 'India · Serving Globally' },
 ];
 
@@ -57,6 +58,13 @@ const Contact = () => {
             <div className="space-y-4">
               {contactInfo.map(info => {
                 const Icon = info.icon;
+                const content = info.href ? (
+                  <a href={info.href} target="_blank" rel="noopener noreferrer" className="hover:underline hover:text-blue-200">
+                    {info.value}
+                  </a>
+                ) : (
+                  info.value
+                );
                 return (
                   <div key={info.label} className="flex items-center gap-3">
                     <div className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center">
@@ -64,7 +72,7 @@ const Contact = () => {
                     </div>
                     <div>
                       <p className="text-xs text-blue-300">{info.label}</p>
-                      <p className="text-sm font-medium text-white">{info.value}</p>
+                      <p className="text-sm font-medium text-white">{content}</p>
                     </div>
                   </div>
                 );
