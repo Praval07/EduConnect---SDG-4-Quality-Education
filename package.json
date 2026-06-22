@@ -4,7 +4,7 @@
   "description": "EduConnect AI — SDG 4 Quality Education Platform. Full-stack MERN application with AI-powered study assistant.",
   "scripts": {
     "start": "cd backend && node server.js",
-    "server": "cd backend && nodemon server.js",
+    "server": "cd backend && npx nodemon server.js",
     "client": "cd frontend && npm run dev",
     "dev": "npm run server & npm run client",
     "build": "cd frontend && npm install && npm run build",
